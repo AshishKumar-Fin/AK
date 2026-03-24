@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>E-Commerce — Exam Guide</title>
+<title>E-Commerce</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -919,7 +919,7 @@ UNITS.forEach((unit,ui)=>{
 function updateProgress(){
   const pct=Math.round((completed.size/TOTAL_CORE)*100);
   document.getElementById('pbar').style.width=pct+'%';
-  document.getElementById('pcnt').textContent=`${completed.size} / ${TOTAL_CORE} Core Topics Covered`;
+  document.getElementById('pcnt').textContent=`${completed.size} / ${TOTAL_CORE} Topics Covered`;
 }
 function selectUnit(ui){
   activeUnitIdx=ui;activeCoreTopic=null;

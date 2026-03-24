@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>E-Commerce — Exam Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#08090f;--bg2:#0d1117;--bg3:#141b27;--bg4:#1a2235;
+  --border:#1f2d42;--border2:#263548;
+  --text:#ffffff;--text-secondary:#d0dae8;--text-muted:#8ba3bf;
+  --c1:#a78bfa;--c2:#7c3aed;--c3:#f5a623;--c4:#e05c7a;
+  --c5:#22d3b0;--c6:#60a5fa;--c7:#fb923c;--card:#0f1622;
+  --sidebar-w:270px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh;overflow-x:hidden;}
+.site-header{background:linear-gradient(160deg,#08090f 0%,#0e0d24 50%,#08090f 100%);border-bottom:1px solid var(--border);padding:2.2rem 2rem 1.8rem;text-align:center;position:relative;overflow:hidden;}
+.site-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(167,139,250,.08) 0%,transparent 65%);pointer-events:none;}
+.site-header h1{font-family:'Libre Baskerville',serif;font-size:clamp(1.4rem,2.8vw,2.1rem);font-weight:700;line-height:1.2;background:linear-gradient(130deg,#fff 20%,#c4b5fd 65%,#22d3b0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0;}
+.reset-btn{position:absolute;top:1rem;right:1.2rem;font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(224,92,122,.08);border:1px solid rgba(224,92,122,.25);color:rgba(224,92,122,.75);padding:.3rem .75rem;border-radius:.4rem;cursor:pointer;transition:all .2s;}
+.reset-btn:hover{background:rgba(224,92,122,.16);border-color:rgba(224,92,122,.5);color:#e05c7a;}
+.prog-bar-wrap{background:var(--bg2);border-bottom:1px solid var(--border);padding:.8rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:center;}
+.prog-label{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#c8d8ea;letter-spacing:.06em;}
+.prog-outer{flex:1;min-width:160px;max-width:380px;height:5px;background:var(--bg4);border-radius:99px;overflow:hidden;}
+.prog-inner{height:100%;background:linear-gradient(90deg,var(--c1),var(--c5));border-radius:99px;transition:width .5s ease;width:0%;}
+.prog-count{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:#a5f3e0;font-weight:500;}
+.unit-nav{background:var(--bg2);border-bottom:1px solid var(--border);padding:.7rem 1rem;display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center;position:sticky;top:0;z-index:200;}
+.unit-btn{font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;padding:.4rem 1.1rem;border-radius:.45rem;border:1px solid var(--border);background:var(--bg3);color:var(--text-muted);cursor:pointer;transition:all .2s;white-space:nowrap;letter-spacing:.02em;}
+.unit-btn:hover{border-color:var(--c6);color:#fff;}
+.unit-btn.active{background:rgba(167,139,250,.15);border-color:var(--c1);color:#fff;}
+.unit-btn.done::after{content:' ✓';color:var(--c5);}
+.layout{display:flex;min-height:calc(100vh - 180px);}
+.sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--bg2);border-right:1px solid var(--border);position:sticky;top:95px;height:calc(100vh - 95px);overflow-y:auto;padding:1.2rem .85rem;flex-shrink:0;}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-track{background:transparent;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px;}
+.sidebar-heading{font-family:'JetBrains Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.13em;color:#c8d8ea;margin-bottom:.85rem;padding:0 .4rem;}
+.core-topic-btn{display:flex;align-items:center;gap:.65rem;width:100%;padding:.65rem .75rem;border-radius:.5rem;border:none;background:transparent;color:var(--text-secondary);font-family:'Outfit',sans-serif;font-size:.83rem;font-weight:500;cursor:pointer;transition:all .18s;text-align:left;margin-bottom:.2rem;line-height:1.35;}
+.core-topic-btn:hover{background:rgba(255,255,255,.04);color:#fff;}
+.core-topic-btn.active{background:rgba(167,139,250,.12);color:#fff;border-left:2.5px solid var(--c1);padding-left:calc(.75rem - 2.5px);}
+.core-topic-btn .ct-num{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-muted);background:var(--bg3);border-radius:.28rem;padding:.08rem .38rem;flex-shrink:0;transition:all .18s;}
+.core-topic-btn.active .ct-num{background:rgba(167,139,250,.2);color:var(--c1);}
+.core-topic-btn .ct-label{flex:1;}
+.core-topic-btn .ct-check{font-size:.7rem;color:var(--c5);background:rgba(34,211,176,.12);border-radius:.28rem;padding:.08rem .38rem;flex-shrink:0;font-weight:700;}
+.core-topic-btn.ct-done .ct-num{background:rgba(34,211,176,.15);color:var(--c5);}
+.core-topic-btn.ct-done .ct-label{color:#8ecfc4;}
+.content-area{flex:1;padding:2rem 2.5rem 4rem;min-width:0;overflow-y:auto;display:flex;flex-direction:column;align-items:center;}
+.content-inner{width:100%;max-width:900px;}
+.unit-title-display{padding:1.8rem 0 .2rem;border-bottom:1px solid var(--border);margin-bottom:0;}
+.unit-title-display .utd-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:var(--unit-color,var(--c1));margin-bottom:.5rem;}
+.unit-title-display h2{font-family:'Libre Baskerville',serif;font-size:1.25rem;font-weight:700;color:#fff;line-height:1.35;}
+.welcome-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:340px;text-align:center;opacity:.6;}
+.welcome-screen .wi{font-size:2.5rem;margin-bottom:1rem;}
+.welcome-screen h3{font-family:'Libre Baskerville',serif;font-size:1.2rem;margin-bottom:.5rem;color:#fff;}
+.welcome-screen p{font-size:.87rem;color:var(--text-muted);}
+.ct-panel-hdr{margin-bottom:1.8rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border);}
+.ct-panel-hdr .ct-tag{font-family:'JetBrains Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:var(--c1);margin-bottom:.5rem;}
+.ct-panel-hdr h2{font-family:'Libre Baskerville',serif;font-size:1.35rem;font-weight:700;color:#fff;line-height:1.3;}
+.topic-card{background:var(--card);border:1px solid var(--border);border-radius:.85rem;margin-bottom:1rem;overflow:hidden;transition:border-color .2s;}
+.topic-card:hover{border-color:var(--border2);}
+.topic-card.open{border-color:rgba(167,139,250,.25);}
+.topic-head{display:flex;align-items:center;gap:.9rem;padding:1.05rem 1.35rem;cursor:pointer;user-select:none;transition:background .15s;}
+.topic-head:hover{background:rgba(255,255,255,.02);}
+.t-icon{width:2rem;height:2rem;border-radius:.4rem;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.ti-a{background:rgba(167,139,250,.14);}
+.ti-b{background:rgba(34,211,176,.12);}
+.ti-c{background:rgba(245,166,35,.12);}
+.ti-d{background:rgba(96,165,250,.11);}
+.ti-e{background:rgba(224,92,122,.1);}
+.ti-f{background:rgba(251,146,60,.11);}
+.topic-title{font-weight:600;font-size:.92rem;flex:1;line-height:1.4;color:#fff;}
+.topic-arrow{color:#c8d8ea;font-size:.8rem;transition:transform .25s;flex-shrink:0;}
+.topic-card.open .topic-arrow{transform:rotate(180deg);}
+.topic-body{display:none;padding:0 1.35rem 1.4rem;border-top:1px solid var(--border);animation:fadeBody .2s ease;}
+@keyframes fadeBody{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+.topic-card.open .topic-body{display:block;}
+.topic-body>*:first-child{margin-top:1.1rem;}
+.prose{font-size:.9rem;line-height:1.92;color:#d0dae8;}
+.prose strong{color:#fff;}
+.prose em{color:#b8c9dc;font-style:normal;}
+.prose h4{color:#fff;font-size:.95rem;font-weight:600;margin:1.2rem 0 .5rem;}
+.prose h5{color:#a5bfd4;font-size:.82rem;font-weight:600;margin:.9rem 0 .3rem;text-transform:uppercase;letter-spacing:.05em;}
+.prose ul,.prose ol{padding-left:1.45rem;margin:.5rem 0;}
+.prose li{margin-bottom:.45rem;color:#d0dae8;}
+.prose p{margin-bottom:.75rem;}
+.def-box{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.22);border-radius:.65rem;padding:1.1rem 1.3rem;margin:1rem 0;}
+.def-lbl{font-family:'JetBrains Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:var(--c1);margin-bottom:.45rem;font-weight:600;}
+.def-box p{font-size:.89rem;line-height:1.82;color:#d4c8ff;margin:0;}
+.fin-panel{background:rgba(34,211,176,.04);border:1px solid rgba(34,211,176,.18);border-radius:.7rem;padding:1.15rem 1.3rem;margin:1.1rem 0;}
+.fin-panel-hdr{display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;}
+.fp-icon{font-size:.95rem;}
+.fp-title{font-family:'JetBrains Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--c5);font-weight:600;}
+.fin-item{display:flex;gap:.65rem;margin-bottom:.7rem;align-items:flex-start;}
+.fin-item:last-child{margin-bottom:0;}
+.fin-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--c5);background:rgba(34,211,176,.12);border-radius:.28rem;padding:.12rem .42rem;flex-shrink:0;margin-top:.12rem;font-weight:600;}
+.fin-text{font-size:.88rem;line-height:1.77;color:#a5ede3;}
+.fin-text strong{color:#d0f8f1;}
+.kp-box{background:rgba(96,165,250,.055);border:1px solid rgba(96,165,250,.18);border-radius:.65rem;padding:1rem 1.25rem;margin:1.1rem 0;}
+.kp-lbl{font-family:'JetBrains Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:var(--c6);margin-bottom:.5rem;font-weight:600;}
+.kp-box ul{padding-left:1.25rem;font-size:.87rem;color:#bdd5f5;line-height:1.8;}
+.kp-box li{margin-bottom:.32rem;}
+.etip{border-left:3px solid var(--c3);background:rgba(245,166,35,.05);border-radius:0 .55rem .55rem 0;padding:.9rem 1.1rem;margin:1rem 0;font-size:.88rem;line-height:1.8;color:#e8cc8a;}
+.etip-lbl{font-size:.63rem;text-transform:uppercase;letter-spacing:.12em;color:var(--c3);margin-bottom:.3rem;font-weight:600;}
+.callout{border-left:3px solid var(--c1);background:rgba(167,139,250,.06);border-radius:0 .55rem .55rem 0;padding:.9rem 1.1rem;margin:1rem 0;font-size:.88rem;line-height:1.8;color:#c4b5fd;}
+.callout-lbl{font-size:.63rem;text-transform:uppercase;letter-spacing:.12em;color:var(--c1);margin-bottom:.3rem;font-weight:600;}
+.data-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.84rem;}
+.data-table thead tr{background:var(--bg3);}
+.data-table th{padding:.6rem .9rem;text-align:left;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;color:#c8d8ea;border-bottom:1px solid var(--border);font-weight:600;}
+.data-table td{padding:.65rem .9rem;border-bottom:1px solid rgba(31,45,66,.7);color:#d0dae8;line-height:1.55;vertical-align:top;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table td:first-child{color:#fff;font-weight:500;}
+.fbox{background:rgba(34,211,176,.05);border:1px solid rgba(34,211,176,.2);border-radius:.65rem;padding:1.15rem 1.35rem;margin:1rem 0;font-family:'JetBrains Mono',monospace;font-size:.81rem;line-height:1.88;color:#6ee7d4;}
+.fbox-label{font-size:.63rem;text-transform:uppercase;letter-spacing:.12em;color:var(--c5);margin-bottom:.5rem;font-weight:600;}
+.worked{background:rgba(245,166,35,.045);border:1px solid rgba(245,166,35,.2);border-radius:.65rem;padding:1.15rem 1.35rem;margin:1rem 0;}
+.worked-lbl{font-family:'JetBrains Mono',monospace;font-size:.63rem;text-transform:uppercase;letter-spacing:.12em;color:var(--c3);margin-bottom:.7rem;}
+.worked p{font-size:.88rem;line-height:1.82;color:#cdb97a;margin-bottom:.45rem;}
+.worked strong{color:#f5d08a;}
+.chart-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:.7rem;padding:1.2rem;margin:1rem 0;}
+.chart-title{font-size:.75rem;font-weight:600;color:#c8d8ea;margin-bottom:.9rem;text-transform:uppercase;letter-spacing:.07em;}
+.bar-chart{display:flex;flex-direction:column;gap:.55rem;}
+.bar-row{display:flex;align-items:center;gap:.85rem;}
+.bar-lbl{font-size:.76rem;color:#c8d8ea;min-width:160px;text-align:right;}
+.bar-outer{flex:1;height:20px;background:var(--bg4);border-radius:3px;overflow:hidden;}
+.bar-inner{height:100%;border-radius:3px;transition:width 1.2s ease;}
+.bar-val{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#c8d8ea;min-width:55px;}
+mark{background:rgba(167,139,250,.15);color:#c4b5fd;padding:.08em .28em;border-radius:.22em;}
+mark.g{background:rgba(34,211,176,.13);color:var(--c5);}
+mark.y{background:rgba(245,166,35,.13);color:#f5a623;}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid var(--border);gap:1rem;}
+.bn-info{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#c8d8ea;}
+.btn{font-family:'Outfit',sans-serif;font-weight:600;font-size:.84rem;padding:.65rem 1.5rem;border-radius:.55rem;cursor:pointer;border:none;transition:all .2s;display:flex;align-items:center;gap:.45rem;}
+.btn-primary{background:linear-gradient(135deg,var(--c1),#5b21b6);color:#fff;}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px);}
+.btn-secondary{background:var(--bg3);border:1px solid var(--border2);color:#fff;}
+.btn-secondary:hover:not(:disabled){border-color:var(--text-muted);background:var(--bg4);}
+.btn:disabled{opacity:.25;cursor:not-allowed;transform:none!important;}
+.btn-done{background:rgba(34,211,176,.12)!important;border:1px solid rgba(34,211,176,.3)!important;color:var(--c5)!important;cursor:default!important;transform:none!important;}
+@media(max-width:720px){.sidebar{display:none;}.content-area{padding:1.2rem 1rem 3rem;}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1>E-COMMERCE</h1>
+  <button class="reset-btn" onclick="resetProgress()" title="Reset all progress">↺ Reset</button>
+</header>
+<div class="prog-bar-wrap">
+  <span class="prog-label">PROGRESS</span>
+  <div class="prog-outer"><div class="prog-inner" id="pbar"></div></div>
+  <span class="prog-count" id="pcnt">0 / 0 Core Topics Covered</span>
+</div>
+<nav class="unit-nav" id="unitnav"></nav>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-heading">Core Topics</div>
+    <div id="sidebar-list"></div>
+  </aside>
+  <main class="content-area" id="content-area">
+    <div class="content-inner">
+      <div id="unit-title-display" style="display:none;"></div>
+      <div class="welcome-screen" id="welcome-screen">
+        <div class="wi">📚</div>
+        <h3>Select a topic to begin</h3>
+        <p>Choose a core topic from the sidebar to view its content.</p>
+      </div>
+      <div id="topic-panel" style="display:none;"></div>
+    </div>
+  </main>
+</div>
+<script>
+const UNITS=[
+{
+id:"U1",label:"UNIT 1",title:"Introduction to E-Commerce & Its Applications",
+color:"#a78bfa",
+coreTopics:[
+// ─── CORE 1 ───────────────────────────────────────────────────
+{
+id:"U1C1",label:"E-Commerce Foundations",
+topics:[
+{icon:"📘",cls:"ti-a",title:"Concept & Evolution of E-Commerce",body:`
+<div class="def-box"><div class="def-lbl">Definition</div>
+<p><strong>E-Commerce (Electronic Commerce)</strong> is the buying and selling of goods, services, and information over electronic networks — primarily the internet — encompassing the entire commercial transaction lifecycle: discovery, negotiation, ordering, payment, fulfillment, and after-sales service, all mediated digitally.</p>
+</div>
+<div class="prose">
+<p>E-commerce is not simply "shopping online." It is a fundamental restructuring of how commerce is organised — shifting transactions from physical spaces and paper-based processes to digital platforms where geography, time zones, and physical presence cease to be binding constraints. Understanding its evolution reveals why today's platform giants are structured the way they are.</p>
+<h4>Evolution — Five Distinct Eras</h4>
+<ul>
+<li><strong>Era 1 — Offline Commerce (pre-1960s):</strong> All trade was physical. Buyers and sellers met in person or through intermediaries (agents, distributors). Information asymmetry was high — buyers had limited ability to compare prices or sellers across geographies. Transaction costs (search, negotiation, enforcement) were substantial.</li>
+<li><strong>Era 2 — EDI-Based Commerce (1960s–1990s):</strong> Electronic Data Interchange allowed large corporations to exchange structured business documents (purchase orders, invoices, shipping notices) electronically over private VANs (Value-Added Networks). This was the first true e-commerce — but accessible only to large firms with the capital to invest in proprietary networks. EDI dramatically reduced paperwork and processing time in manufacturing, retail (Walmart used EDI to manage its supplier ecosystem), and logistics.</li>
+<li><strong>Era 3 — Web-Based Commerce (1994–2005):</strong> The public internet and browser technology democratised digital commerce. Amazon (1994) and eBay (1995) proved that consumers would transact online. SSL encryption (1994) made payments sufficiently secure. This era saw the dot-com boom (1996–2000), characterised by massive capital inflows into internet businesses, and the subsequent bust (2000–2002) when it became clear that pageviews without unit economics were not businesses. Survivors (Amazon, eBay, Google) emerged with fundamentally sounder models.</li>
+<li><strong>Era 4 — Platform Economy (2005–2015):</strong> The internet shifted from a collection of websites to a set of platforms — two-sided or multi-sided markets connecting buyers, sellers, and service providers. Amazon Marketplace (third-party sellers), Apple App Store, Alibaba's Taobao. Mobile smartphones (iPhone 2007, Android 2008) extended the reach of platforms to always-on, location-aware devices. Social networks (Facebook, Instagram) began influencing purchase decisions at scale.</li>
+<li><strong>Era 5 — API-Driven & Embedded Commerce (2015–present):</strong> Commerce is now embedded everywhere — payments inside WhatsApp, lending inside e-commerce checkout, insurance inside ride-hailing. APIs (Application Programming Interfaces) enable any platform to add commerce capabilities without building them from scratch. Razorpay, Stripe, and Shopify provide infrastructure on which millions of merchants build. In India, UPI's open API architecture enabled a burst of payment innovation. AI now personalises every layer of the consumer experience in real time.</li>
+</ul>
+</div>
+<div class="chart-wrap"><div class="chart-title">E-Commerce GMV Growth — India (USD Billion)</div>
+<div class="bar-chart">
+<div class="bar-row"><div class="bar-lbl">2015</div><div class="bar-outer"><div class="bar-inner" style="width:8%;background:linear-gradient(90deg,#a78bfa,#7c3aed);"></div></div><div class="bar-val">~$16B</div></div>
+<div class="bar-row"><div class="bar-lbl">2018</div><div class="bar-outer"><div class="bar-inner" style="width:22%;background:linear-gradient(90deg,#a78bfa,#7c3aed);"></div></div><div class="bar-val">~$38B</div></div>
+<div class="bar-row"><div class="bar-lbl">2021</div><div class="bar-outer"><div class="bar-inner" style="width:45%;background:linear-gradient(90deg,#a78bfa,#22d3b0);"></div></div><div class="bar-val">~$74B</div></div>
+<div class="bar-row"><div class="bar-lbl">2024</div><div class="bar-outer"><div class="bar-inner" style="width:72%;background:linear-gradient(90deg,#22d3b0,#60a5fa);"></div></div><div class="bar-val">~$125B</div></div>
+<div class="bar-row"><div class="bar-lbl">2030 (proj)</div><div class="bar-outer"><div class="bar-inner" style="width:100%;background:linear-gradient(90deg,#60a5fa,#a78bfa);"></div></div><div class="bar-val">~$350B</div></div>
+</div></div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>E-commerce = full commercial lifecycle conducted electronically, not just the purchase moment</li>
+<li>Era 1: Physical; Era 2: EDI (private networks, large firms); Era 3: Web (public internet, consumers); Era 4: Platforms (two-sided markets, mobile); Era 5: API/AI-driven embedded commerce</li>
+<li>The dot-com bust eliminated businesses with no unit economics; survivors built defensible models</li>
+<li>India's e-commerce GMV projected to reach $350B by 2030 — driven by UPI, Jio, and logistics buildout</li>
+<li>Each era didn't replace the previous — EDI still runs global supply chains; platforms now coexist with web storefronts</li>
+</ul></div>`},
+{icon:"🏢",cls:"ti-b",title:"Role of E-Commerce in Modern Business",body:`
+<div class="prose">
+<p>E-commerce has redefined competitive advantage in virtually every industry. Its role extends far beyond "selling online" — it restructures cost bases, redraws market boundaries, and creates entirely new competitive dynamics.</p>
+<h4>Market Expansion — Removing Geographic Limits</h4>
+<p>A traditional retailer's addressable market is bounded by the physical distance customers will travel. An e-commerce business, in principle, can serve any customer with internet access and a delivery address. A handloom weaver in Pochampally (Telangana) selling directly on Amazon Global Selling can reach customers in the US, UK, and Australia — markets that were literally inaccessible before. For B2B companies, e-commerce platforms like IndiaMART connect manufacturers in Gujarat with buyers in Bihar, collapsing the traditional distributor chain.</p>
+<h4>Cost Efficiency — The Asset-Light Advantage</h4>
+<p>Physical retail requires substantial fixed costs: real estate, store fitout, local staff, inventory at each location. E-commerce replaces many of these with variable costs. A D2C brand can serve 10 cities or 500 cities with the same website and backend — the marginal cost of adding a new geography is close to zero once the logistics network is in place. This is the <mark>scale without mass</mark> characteristic of digital businesses.</p>
+<h4>Scalability — Growing Revenue Without Proportional Cost Growth</h4>
+<p>Unlike a physical store where doubling revenue requires roughly doubling space and staff, e-commerce platforms can handle 10x transaction volume with modest infrastructure upgrades (cloud scaling). During Flipkart's Big Billion Days sale, the platform processes millions of orders per hour — a volume that would be physically impossible to handle through any traditional retail format.</p>
+<h4>Customer Reach & Data Advantage</h4>
+<p>Every digital transaction generates data — what was searched, what was viewed, how long the user stayed, what was added to cart and then removed, what was eventually purchased. This behavioural data enables increasingly precise personalisation, demand forecasting, and product development. Physical retailers have purchase data; e-commerce platforms have the entire decision journey — a fundamentally different and more powerful information asset.</p>
+<h4>Disintermediation</h4>
+<p>E-commerce enables manufacturers and brands to bypass traditional distribution layers (wholesalers, distributors, retailers) and connect directly with end consumers. The D2C (Direct-to-Consumer) model — exemplified by Boat, Mamaearth, and Sugar Cosmetics in India — builds brand relationships directly, captures higher margins, and controls the customer experience end-to-end. The savings from disintermediation can be passed to consumers (lower prices), retained as margin, or reinvested in brand-building.</p>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Market expansion: removes geographic limits on addressable market — local craft to global buyer</li>
+<li>Cost efficiency: fixed costs → variable costs; marginal cost of new geography ≈ zero once logistics built</li>
+<li>Scalability: revenue can grow 10x without proportional cost growth (cloud infrastructure)</li>
+<li>Data advantage: e-commerce captures full decision journey, not just purchase — a unique competitive asset</li>
+<li>Disintermediation: D2C bypasses wholesalers and retailers, capturing margin and customer relationship directly</li>
+</ul></div>`},
+{icon:"🌐",cls:"ti-c",title:"E-Commerce in the Digital Economy — Network Effects & Platform Dominance",body:`
+<div class="def-box"><div class="def-lbl">Key Concept</div>
+<p>The <strong>digital economy</strong> is economic activity mediated by digital technologies — where data is a primary input, scale is achieved at near-zero marginal cost, and value is often created through network effects rather than physical production.</p>
+</div>
+<div class="prose">
+<h4>Network Effects — The Core Dynamic</h4>
+<p>A network effect exists when the value of a product or service increases as more people use it. E-commerce platforms are among the most powerful examples of network effects in economic history.</p>
+<ul>
+<li><strong>Direct Network Effects:</strong> More buyers → more sellers want to list (because more potential customers). More sellers → more buyers want to join (because more choice). Each side makes the other more valuable. This is why Amazon's marketplace, Flipkart, and Meesho become progressively harder to compete with as they grow.</li>
+<li><strong>Data Network Effects:</strong> More transactions → better data → better recommendations → more conversions → more transactions. The data flywheel compounds over time, making incumbents increasingly difficult to dislodge. Amazon's recommendation engine improves because it has 300 million+ customers' purchase histories; a new entrant starting from zero cannot replicate this data asset regardless of engineering capability.</li>
+<li><strong>Indirect Network Effects:</strong> Uber's drivers (one side) and passengers (other side) don't directly interact with each other's numbers, but the density of drivers in a city makes the service more valuable for passengers (shorter wait times) and vice versa. Similarly, more payment merchants → more reason for consumers to use a payment app → more consumers → more reason for merchants to join.</li>
+</ul>
+<h4>Winner-Takes-Most Dynamics</h4>
+<p>Unlike most industries where market share is distributed (Pepsi and Coke both survive; multiple car brands coexist), digital platform markets tend toward concentration. The reasons:</p>
+<ul>
+<li><strong>Near-zero switching costs for consumers</strong> (anyone can download a competing app in 30 seconds), but the accumulated network effects and data advantages make competing products feel inferior in practice</li>
+<li><strong>Multi-homing costs are asymmetric</strong> — consumers may use multiple platforms (Amazon and Flipkart), but sellers prefer the one with the highest traffic, and advertisers follow the audiences</li>
+<li><strong>The leading platform captures disproportionate value</strong> — in Indian food delivery, Zomato and Swiggy together hold ~95% market share; in ride-hailing, Ola and Uber dominate; in e-commerce, Amazon and Flipkart account for ~65% of organised e-tail GMV</li>
+</ul>
+<h4>Platform Dominance & Its Consequences</h4>
+<p>Platform dominance creates significant policy questions: Should Amazon be allowed to both operate a marketplace and compete on it with Amazon Basics products (self-preferencing)? Should Google rank its own shopping results above competitors? These questions are actively being debated in India (Competition Commission of India investigations), the EU (Digital Markets Act), and the US.</p>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Network effects: value increases with user count — direct (same side), indirect (cross-side), data (algorithmic compounding)</li>
+<li>Data flywheel: more users → more data → better product → more users — self-reinforcing competitive moat</li>
+<li>Winner-takes-most: digital markets concentrate because network effects create self-reinforcing advantages</li>
+<li>Amazon + Flipkart ~65% of organised Indian e-tail GMV — classic winner-takes-most outcome</li>
+<li>Platform dominance → self-preferencing concerns → regulatory scrutiny (CCI, EU DMA, US antitrust)</li>
+</ul></div>`}
+]},
+// ─── CORE 2 ───────────────────────────────────────────────────
+{
+id:"U1C2",label:"Business Environment",
+topics:[
+{icon:"📈",cls:"ti-b",title:"Growth Drivers of E-Commerce",body:`
+<div class="prose">
+<p>India's e-commerce growth is not the result of a single factor — it is the convergence of four structural shifts happening simultaneously. Understanding each driver individually, and more importantly their interaction effects, explains why India's digital commerce market is growing faster than most comparable economies.</p>
+<h4>1. Internet Penetration & Jio's Impact</h4>
+<p>In 2016, India had approximately 300 million internet users with average data costs of ₹250/GB. Reliance Jio's launch in September 2016 collapsed data prices to ₹7–10/GB within 18 months. By 2024, India has 850+ million internet users — the second-largest connected population globally. The next 400 million users coming online are predominantly Tier-2, Tier-3, and rural — driving vernacular e-commerce, voice interfaces, and the growth of value-oriented platforms like Meesho.</p>
+<h4>2. Smartphone Penetration</h4>
+<p>India shipped 150+ million smartphones in 2023. Affordable Android devices (₹6,000–10,000 range) have given the majority of the new internet population a mobile-first internet experience. Over 70% of Indian e-commerce transactions happen on mobile — unlike developed markets where desktop still holds significant share. This makes app-based commerce, UPI payments (mobile-native), and short-video social commerce natural fits for the Indian market.</p>
+<h4>3. Digital Payments Infrastructure — UPI</h4>
+<p>The Unified Payments Interface (UPI), launched by NPCI in 2016, is perhaps India's single most important e-commerce infrastructure development. By enabling instant, interoperable, zero-MDR bank-to-bank transfers through any smartphone, UPI eliminated the friction that killed conversion rates (card numbers, CVVs, OTPs, bank portals). UPI processed <strong>131 billion transactions worth ₹199 lakh crore in FY2024</strong>. Every e-commerce platform in India now treats UPI as its primary payment rail.</p>
+<h4>4. Logistics Innovation</h4>
+<p>In 2014, reliable e-commerce delivery was largely limited to Tier-1 cities. Between 2015 and 2024, a combination of investment in third-party logistics (Delhivery, Ecom Express, Shadowfax), Flipkart and Amazon building proprietary fulfillment networks, and the government's push for road and highway infrastructure has extended next-day delivery to 19,000+ pin codes and 2-day delivery to 27,000+ pin codes. Same-day and hyperlocal delivery (Blinkit, Zepto, Swiggy Instamart) now operates in 50+ cities.</p>
+</div>
+<div class="chart-wrap"><div class="chart-title">Key E-Commerce Growth Drivers — India (2024)</div>
+<div class="bar-chart">
+<div class="bar-row"><div class="bar-lbl">Internet Users (M)</div><div class="bar-outer"><div class="bar-inner" style="width:90%;background:linear-gradient(90deg,#a78bfa,#7c3aed);"></div></div><div class="bar-val">850M+</div></div>
+<div class="bar-row"><div class="bar-lbl">UPI Txns FY24 (B)</div><div class="bar-outer"><div class="bar-inner" style="width:85%;background:linear-gradient(90deg,#22d3b0,#60a5fa);"></div></div><div class="bar-val">131B</div></div>
+<div class="bar-row"><div class="bar-lbl">Smartphone Sales/yr (M)</div><div class="bar-outer"><div class="bar-inner" style="width:60%;background:linear-gradient(90deg,#f5a623,#e05c7a);"></div></div><div class="bar-val">150M+</div></div>
+<div class="bar-row"><div class="bar-lbl">Pin codes serviceable</div><div class="bar-outer"><div class="bar-inner" style="width:75%;background:linear-gradient(90deg,#60a5fa,#a78bfa);"></div></div><div class="bar-val">27,000+</div></div>
+</div></div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Jio (2016): data cost ₹250/GB → ₹7/GB; added 500M+ new internet users</li>
+<li>70%+ of Indian e-commerce is mobile-originated — most mobile-intensive large e-commerce market globally</li>
+<li>UPI FY2024: 131B transactions, ₹199L Cr value — the backbone of e-commerce payments</li>
+<li>Logistics: next-day delivery now covers 19,000+ pin codes; same-day in 50+ cities</li>
+<li>Growth drivers interact: cheap data + affordable smartphones + UPI + logistics = compound acceleration</li>
+</ul></div>`},
+{icon:"⚠️",cls:"ti-e",title:"Structural Constraints & Global vs Indian Context",body:`
+<div class="prose">
+<h4>Structural Constraints — Why E-Commerce Is Hard</h4>
+<p>Despite rapid growth, Indian e-commerce faces structural constraints that limit penetration and profitability. Understanding these is as important as understanding the drivers.</p>
+<ul>
+<li><strong>Trust Deficit:</strong> A significant portion of Indian consumers — particularly first-time online buyers and older demographics — remain concerned about product quality, seller authenticity, and the difficulty of returning goods. Cash-on-delivery (CoD) accounts for ~35% of e-commerce orders in India precisely because consumers don't trust pre-payment on unknown platforms. CoD creates its own problems: higher return rates (customers order, inspect in person, return what they don't want), logistics cost (delivery + return), and cash management.</li>
+<li><strong>Logistics Bottlenecks:</strong> While Tier-1 cities have excellent logistics coverage, Tier-3 and rural pin codes still face inconsistent service quality, longer delivery times, and higher per-unit delivery costs. The last-mile problem — getting a package from the nearest hub to a customer's door in a dense urban environment or a remote village — remains expensive. At ₹60–80 average last-mile delivery cost, thin-margin categories (staples, low-ticket items) are often uneconomical to deliver.</li>
+<li><strong>Returns Management:</strong> Indian e-commerce return rates average 20–30% in fashion and 5–10% in electronics. Each return costs the platform ₹80–120 in reverse logistics, plus the cost of quality inspection and restocking. At scale, returns represent a significant P&L burden — Myntra reportedly processes 40,000+ returns per day.</li>
+<li><strong>Regulatory Friction:</strong> India's FDI rules prohibit foreign-funded e-commerce platforms from holding inventory (they must operate as pure marketplaces). This forced Amazon and Flipkart to structure their businesses through affiliated sellers and wholesale entities — adding complexity and regulatory risk. GST compliance across multiple states, TCS (Tax Collected at Source) obligations for marketplace operators, and evolving consumer protection rules add compliance cost.</li>
+</ul>
+<h4>Global vs Indian Context</h4>
+</div>
+<table class="data-table"><thead><tr><th>Dimension</th><th>Developed Markets (US/EU)</th><th>India</th></tr></thead><tbody>
+<tr><td>E-commerce penetration</td><td>20–25% of retail</td><td>~8% of retail (2024)</td></tr>
+<tr><td>Primary payment method</td><td>Credit cards, digital wallets</td><td>UPI (50%+), CoD (35%)</td></tr>
+<tr><td>Delivery expectation</td><td>1–2 days standard; same-day growing</td><td>2–5 days standard; same-day in metros</td></tr>
+<tr><td>Return rate (fashion)</td><td>30–40%</td><td>20–30%</td></tr>
+<tr><td>Average order value</td><td>$80–120</td><td>₹800–1,200 (~$10–14)</td></tr>
+<tr><td>Market structure</td><td>Amazon dominant; Walmart (online)</td><td>Amazon + Flipkart dominant; Meesho growing</td></tr>
+<tr><td>Regulatory model</td><td>Lighter touch (US); heavy (EU DSA)</td><td>FDI restrictions; IT Rules 2021; ONDC</td></tr>
+</tbody></table>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Trust deficit → CoD dominance → higher return rates → logistics cost burden (vicious cycle)</li>
+<li>Last-mile cost ₹60–80/shipment makes low-ticket items uneconomical in many categories</li>
+<li>India: 8% e-commerce penetration vs 20-25% in developed markets — large headroom but real structural barriers</li>
+<li>FDI restrictions force marketplace-only model for foreign-funded platforms (no inventory ownership)</li>
+<li>Average order value ~$12 vs $100 in US — unit economics fundamentally different; volume must compensate</li>
+</ul></div>`}
+]},
+// ─── CORE 3 ───────────────────────────────────────────────────
+{
+id:"U1C3",label:"Applications of E-Commerce",
+topics:[
+{icon:"🛍️",cls:"ti-a",title:"Retail, D2C & Services-Based E-Commerce",body:`
+<div class="prose">
+<h4>Retail E-Commerce — Marketplaces vs Brand-Owned Platforms</h4>
+<p>Retail e-commerce operates through two primary structures. <strong>Marketplace platforms</strong> (Amazon, Flipkart, Meesho) act as intermediaries connecting buyers with third-party sellers. They provide the technology, logistics, payments, and customer trust infrastructure while sellers list their products. The platform earns a commission (typically 5–30% depending on category) plus fees for fulfillment, advertising, and storage. <strong>Brand-owned storefronts</strong> allow companies to sell directly through their own website or app — giving full control over the customer experience, data, and margin but requiring independent traffic acquisition.</p>
+<h4>D2C (Direct-to-Consumer) Commerce</h4>
+<p>The D2C model has been one of the most significant structural shifts in Indian retail over the past decade. Brands like Boat (consumer electronics/audio), Mamaearth (personal care), Sugar Cosmetics (beauty), and Lenskart (eyewear) built large consumer franchises by combining e-commerce reach with owned brand relationships.</p>
+<ul>
+<li><strong>Margin advantage:</strong> By cutting out distributors and retailers (who typically take 30–50% margin), D2C brands capture higher gross margins and can price competitively while remaining more profitable per unit</li>
+<li><strong>Data ownership:</strong> Every customer interaction happens on the brand's own platform — purchase history, preferences, feedback — enabling personalised communication and product development</li>
+<li><strong>Brand control:</strong> Presentation, pricing, and customer experience are fully controlled, preventing the commoditisation that happens when a brand is listed alongside 50 competitors on a marketplace</li>
+<li><strong>Challenge — traffic acquisition:</strong> A marketplace provides built-in discovery (millions of daily active users). A D2C brand must generate its own traffic through performance marketing, SEO, and content — Customer Acquisition Cost (CAC) is typically higher</li>
+</ul>
+<h4>Services-Based E-Commerce</h4>
+<p>Beyond physical goods, e-commerce infrastructure supports a vast range of service transactions:</p>
+<ul>
+<li><strong>Banking & Financial Services:</strong> Net banking, mobile banking apps, online loan applications, digital insurance (Policybazaar, Acko), investment platforms (Zerodha, Groww)</li>
+<li><strong>Travel:</strong> MakeMyTrip, Yatra, Cleartrip for flights, hotels, trains — OTAs (Online Travel Agencies) now account for 60%+ of Indian flight bookings</li>
+<li><strong>Education:</strong> EdTech platforms (BYJU'S, Unacademy, upGrad) deliver content, live classes, and assessments digitally — the pandemic accelerated institutional adoption from near-zero</li>
+<li><strong>Healthcare:</strong> Teleconsultation (Practo, Apollo247), online pharmacy (PharmEasy, 1mg), lab test booking — digitising healthcare access particularly in Tier-2/3 markets</li>
+</ul>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Marketplace: platform as intermediary; earns commission + fees; seller bears inventory risk</li>
+<li>D2C: brand sells directly; higher margin, data ownership, brand control — but higher CAC</li>
+<li>D2C leaders: Boat, Mamaearth, Sugar, Lenskart — built large franchises bypassing traditional retail</li>
+<li>Services e-commerce: banking (Zerodha, Groww), travel (MakeMyTrip), education (BYJU'S), healthcare (Practo)</li>
+<li>60%+ of Indian flight bookings now via OTAs — services e-commerce often deeper penetrated than goods</li>
+</ul></div>`},
+{icon:"🏭",cls:"ti-c",title:"Enterprise, Government & Platform Ecosystem Applications",body:`
+<div class="prose">
+<h4>Enterprise & Industrial E-Commerce</h4>
+<p>B2B e-commerce in India is significantly larger in value terms than B2C, though less visible to consumers. Industrial procurement — machinery, raw materials, MRO (Maintenance, Repair & Operations) supplies — is increasingly conducted through digital platforms. <strong>IndiaMART</strong> hosts 8 million+ suppliers across 56 million products and connects them with 10 million+ buyers monthly. <strong>Amazon Business</strong> serves GST-registered businesses with bulk pricing, GST invoicing, and multi-user accounts. <strong>Udaan</strong> focuses specifically on B2B trade in the FMCG, pharma, and staples categories — digitising the kirana reseller supply chain. The procurement portal model (Ariba, SAP procurement) enables large corporations to manage supplier relationships, RFQs (Request for Quotation), and purchase orders entirely digitally.</p>
+<h4>Government E-Commerce (e-Governance)</h4>
+<p>India has built one of the world's most ambitious digital government commerce infrastructures:</p>
+<ul>
+<li><strong>GeM (Government e-Marketplace):</strong> The government's own procurement platform for all central and state government purchases — ₹4 lakh crore GMV in FY2024. Enables MSMEs to sell directly to government agencies without traditional tender complexities</li>
+<li><strong>IRCTC:</strong> Processes 1 million+ train ticket bookings daily — one of the highest-volume e-commerce transactions in the world</li>
+<li><strong>DigiLocker:</strong> Digital document storage and verification — driving paperless government service delivery</li>
+<li><strong>MCA21, GSTN:</strong> Corporate registration, GST filing, and compliance conducted entirely online</li>
+</ul>
+<h4>Platform Ecosystems — Super Apps</h4>
+<p>The <strong>super app</strong> model — a single app that serves as a gateway to multiple services (payments, shopping, food delivery, travel, insurance, investments) — has become the dominant platform architecture in Asia. WeChat (China) pioneered the model. In India:</p>
+<ul>
+<li><strong>Tata Neu:</strong> Attempts to combine Tata's airline (Air India), retail (BigBasket, Croma), hospitality (Taj Hotels), and financial services into one loyalty-driven super app</li>
+<li><strong>PhonePe:</strong> Started as UPI payment app; now offers insurance, mutual funds, gold, and merchant commerce</li>
+<li><strong>Paytm:</strong> Payments → e-commerce → banking → insurance → lending — though profitability challenges have forced rationalization</li>
+</ul>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>IndiaMART: 8M+ suppliers, 10M+ monthly buyers — largest B2B e-commerce marketplace in India</li>
+<li>GeM: ₹4L Cr GMV FY2024 — government procurement fully digitised, MSME-inclusive</li>
+<li>IRCTC: 1M+ bookings/day — among world's highest-volume e-commerce transaction systems</li>
+<li>Super app model: one app → multiple services (payments, commerce, financial services) — Tata Neu, PhonePe, Paytm</li>
+<li>B2B e-commerce (IndiaMART, Udaan, Amazon Business) larger in value than B2C, less consumer-visible</li>
+</ul></div>`}
+]},
+// ─── CORE 4 ───────────────────────────────────────────────────
+{
+id:"U1C4",label:"E-Commerce Models",
+topics:[
+{icon:"🔄",cls:"ti-d",title:"B2B, B2C, C2C, C2B & Government Models",body:`
+<div class="prose">
+<p>E-commerce models are categorised by the nature of the transacting parties. Each model has distinct economics, trust requirements, regulatory considerations, and platform structures.</p>
+<h4>B2B — Business to Business</h4>
+<p>Transactions between businesses: manufacturer to wholesaler, wholesaler to retailer, enterprise to supplier. B2B e-commerce is characterised by <strong>high order values, negotiated pricing, longer sales cycles, credit-based settlement, and relationship-driven purchasing</strong>. Digital transformation of B2B procurement has been slower than B2C because legacy procurement systems (SAP, Oracle), complex approval workflows, and multi-stakeholder buying committees resist rapid change. However, platforms like Udaan (FMCG/pharma B2B), OfBusiness (industrial B2B), and Moglix (manufacturing procurement) are building significant businesses by digitising these traditionally offline transactions. Global B2B e-commerce is estimated at $18 trillion — roughly 5× the size of global B2C e-commerce.</p>
+<h4>B2C — Business to Consumer</h4>
+<p>The most visible e-commerce model — businesses selling directly to individual end consumers. Amazon, Flipkart, Myntra, Nykaa, Zomato are all B2C. B2C is characterised by <strong>high transaction volume, lower order values, impulse purchasing, high price sensitivity, and demand for fast delivery</strong>. Consumer trust and user experience are paramount competitive differentiators. The business must invest heavily in discovery (ads, SEO), conversion (UX, reviews, pricing), and retention (loyalty programs, personalisation).</p>
+<h4>C2C — Consumer to Consumer</h4>
+<p>Platforms that enable individuals to transact with each other. The platform provides the infrastructure (listing, communication, payment) but does not own the goods. eBay pioneered the model with online auctions; in India, OLX (classifieds), Quikr, and Meesho (social resale) are prominent examples. The platform's challenge is trust — neither party is a professional business, so quality verification, fraud prevention, and dispute resolution require significant investment. Secondhand and resale markets are growing rapidly globally as sustainability consciousness increases.</p>
+<h4>C2B — Consumer to Business</h4>
+<p>A less discussed but increasingly significant model where individuals offer value to businesses. <strong>Freelancing platforms</strong> (Upwork, Fiverr, Toptal) allow individuals to sell skills to businesses. <strong>Influencer marketplaces</strong> (where brands pay creators for content) are a C2B model at scale — an individual (content creator) provides a marketing service to a business. <strong>Review platforms</strong> — where consumer reviews (a consumer-created asset) drive business outcomes — can also be framed as C2B value exchange. In the data economy, consumers providing their behavioural data in exchange for free services is arguably the dominant C2B transaction of the digital era.</p>
+<h4>Government Models — G2B and G2C</h4>
+<p><strong>G2C (Government to Citizen):</strong> Digital delivery of government services to citizens — IRCTC tickets, passport applications (Passport Seva), driving licence renewals, utility bill payments through government portals, Jan Dhan account opening. The goal is frictionless, inclusive, transparent service delivery. <strong>G2B (Government to Business):</strong> Government services directed at businesses — GST filing (GSTN), corporate registration (MCA21), GeM procurement, e-tender platforms. India's stack of digital government infrastructure (Aadhaar, UPI, DigiLocker, GST Network, Account Aggregator) is collectively known as the <strong>India Stack</strong> — a public digital infrastructure that enables both G2C/G2B services and provides rails for private commerce.</p>
+</div>
+<table class="data-table"><thead><tr><th>Model</th><th>Example Platforms</th><th>Avg Order Value</th><th>Key Challenge</th></tr></thead><tbody>
+<tr><td>B2B</td><td>IndiaMART, Udaan, OfBusiness, GeM</td><td>₹10,000–10L+</td><td>Long sales cycles, credit management</td></tr>
+<tr><td>B2C</td><td>Amazon, Flipkart, Myntra, Zomato</td><td>₹500–5,000</td><td>CAC, returns, margin pressure</td></tr>
+<tr><td>C2C</td><td>OLX, Quikr, eBay, Meesho (resale)</td><td>₹200–2,000</td><td>Trust, fraud, quality verification</td></tr>
+<tr><td>C2B</td><td>Upwork, Fiverr, Instagram (creators)</td><td>Variable</td><td>Quality standardisation, IP</td></tr>
+<tr><td>G2C</td><td>IRCTC, DigiLocker, Passport Seva</td><td>N/A</td><td>Inclusion, digital literacy</td></tr>
+<tr><td>G2B</td><td>GeM, GSTN, MCA21</td><td>N/A</td><td>Compliance complexity</td></tr>
+</tbody></table>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>B2B: high value, negotiated, credit-based — global B2B e-commerce ~$18T (5× B2C)</li>
+<li>B2C: high volume, low value, impulse-driven — trust and UX are primary competitive variables</li>
+<li>C2C: platform as infrastructure; trust and fraud prevention are core platform responsibilities</li>
+<li>C2B: freelancing, influencer marketing, data-as-value-exchange — growing model</li>
+<li>India Stack (Aadhaar+UPI+DigiLocker+GST+AA): world's most comprehensive public digital commerce infrastructure</li>
+</ul></div>`}
+]},
+// ─── CORE 5 ───────────────────────────────────────────────────
+{
+id:"U1C5",label:"Platform & Marketplace Structures",
+topics:[
+{icon:"🏗️",cls:"ti-f",title:"Inventory-Led, Marketplace, Hybrid, Aggregator & Subscription Models",body:`
+<div class="prose">
+<h4>Inventory-Led Model</h4>
+<p>The platform purchases goods from manufacturers/brands, holds inventory in its own warehouses, and sells directly to consumers. This is traditional e-retail — analogous to a physical department store. <strong>Advantages:</strong> complete control over product quality, pricing, packaging, and delivery timeline; ability to guarantee product authenticity; better unit economics on high-velocity SKUs. <strong>Disadvantages:</strong> capital-intensive (inventory must be purchased upfront), warehousing costs, inventory risk (unsold stock, spoilage, obsolescence). In India, FDI rules prohibit foreign-funded platforms from operating pure inventory-led models — which is why Amazon and Flipkart operate hybrid structures through affiliated entities.</p>
+<h4>Marketplace Model</h4>
+<p>The platform provides infrastructure (technology, payments, logistics, customer trust) while independent third-party sellers list their products. The platform earns commission on each transaction (referral fee: 5–30% depending on category) plus fees for additional services (FBA-equivalent fulfillment, advertising, premium listing). <strong>Advantages:</strong> capital-light (no inventory ownership), infinite selection (limited only by how many sellers join), scalable without proportional cost growth. <strong>Disadvantages:</strong> quality control is difficult (platform cannot inspect every product from thousands of sellers), trust is more fragile (fake products, bad actors), and the platform is dependent on seller health (if key sellers exit, selection degrades). Amazon India's marketplace has 1.4 million+ sellers; Flipkart has 400,000+ sellers.</p>
+<h4>Hybrid Structures</h4>
+<p>In practice, most major platforms operate hybrid models — combining owned inventory (for top-selling SKUs where control and margin warrant it) with a marketplace (for long-tail selection). Amazon's "Retail" business (first-party) coexists with Amazon Marketplace (third-party). Flipkart Wholesale (B2B inventory) coexists with Flipkart Marketplace. The proportion shifts based on category, margin, and strategic priority.</p>
+<h4>Aggregator Model</h4>
+<p>Aggregators do not own inventory or fulfil delivery — they provide a <strong>discovery and price comparison layer</strong> that connects consumers with service providers. The aggregator standardises the customer experience (consistent UI, rating system, pricing transparency) without controlling the underlying service delivery. Examples: Policybazaar (insurance), Paisabazaar (loans), MakeMyTrip (travel — partly aggregator), Practo (doctors). Aggregators create value through information aggregation — reducing consumer search costs dramatically. Revenue comes from lead generation fees or commission on completed transactions.</p>
+<h4>Subscription Platforms</h4>
+<p>Subscription e-commerce replaces one-time purchases with recurring revenue relationships. Models include:</p>
+<ul>
+<li><strong>Replenishment subscriptions:</strong> Consumables delivered on a schedule (Dollar Shave Club model; Amazon's Subscribe & Save)</li>
+<li><strong>Curation subscriptions:</strong> Curated boxes of products (Fable Street's stylist-curated fashion boxes)</li>
+<li><strong>Access subscriptions:</strong> Membership that unlocks benefits (Amazon Prime — free delivery, streaming, early access; Flipkart Plus)</li>
+<li><strong>SaaS for businesses:</strong> Shopify, Zoho Commerce charge monthly/annual fees for e-commerce infrastructure</li>
+</ul>
+<p>Subscription models are valued at higher revenue multiples than transactional models because of predictable recurring revenue, higher LTV per customer, and lower CAC amortised over multiple periods.</p>
+</div>
+<table class="data-table"><thead><tr><th>Structure</th><th>Inventory Ownership</th><th>Revenue Model</th><th>Key Risk</th><th>India Example</th></tr></thead><tbody>
+<tr><td>Inventory-led</td><td>Yes — platform owns</td><td>Gross margin on sales</td><td>Capital intensity, inventory risk</td><td>Nykaa (beauty)</td></tr>
+<tr><td>Marketplace</td><td>No — sellers own</td><td>Commission + service fees</td><td>Quality control, trust</td><td>Amazon, Flipkart (3P)</td></tr>
+<tr><td>Hybrid</td><td>Partial (strategic SKUs)</td><td>Mix of margin + commission</td><td>Structural complexity</td><td>Amazon (1P+3P mix)</td></tr>
+<tr><td>Aggregator</td><td>No</td><td>Lead gen / commission</td><td>Disintermediation by providers</td><td>Policybazaar, MakeMyTrip</td></tr>
+<tr><td>Subscription</td><td>Varies</td><td>Recurring fee</td><td>Churn, value demonstration</td><td>Amazon Prime, Zerodha</td></tr>
+</tbody></table>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Inventory-led: control + quality; capital-intensive; FDI rules restrict foreign platforms in India</li>
+<li>Marketplace: capital-light, infinite selection, quality control challenge; Amazon Marketplace: 1.4M+ sellers</li>
+<li>Hybrid: dominant real-world structure; balances control (owned inventory) with scale (marketplace)</li>
+<li>Aggregator: price discovery without inventory — value from information aggregation, not physical goods</li>
+<li>Subscription: recurring revenue → higher valuation multiples, lower CAC amortised over customer lifetime</li>
+</ul></div>`}
+]},
+// ─── CORE 6 ───────────────────────────────────────────────────
+{
+id:"U1C6",label:"E-Commerce Value Chain",
+topics:[
+{icon:"⛓️",cls:"ti-b",title:"The Complete E-Commerce Value Chain",body:`
+<div class="prose">
+<p>The e-commerce value chain describes every link in the chain of activities that converts a manufacturer's product or a service provider's capability into a delivered, paid, and satisfying customer experience. Understanding each link — and where value is created, captured, or lost — is essential to understanding platform strategy and competitive dynamics.</p>
+<h4>1. Customer Interface Layer</h4>
+<p>This is everything the consumer directly experiences: the website, mobile app, search functionality, product pages, and recommendation engine. The quality of this layer determines discovery (can the customer find what they want?), consideration (does the product page build sufficient confidence to purchase?), and conversion (is the checkout process frictionless enough to complete the transaction?). A 1-second delay in page load time increases cart abandonment by 7% (Akamai research). Amazon reportedly tests every pixel of its checkout flow — small improvements at massive scale translate to hundreds of millions in incremental revenue.</p>
+<h4>2. Transaction Management</h4>
+<p>Once a consumer commits to purchase, the Order Management System (OMS) takes over: capturing the order, routing it to the appropriate fulfillment centre, confirming stock availability, allocating payment, and triggering the logistics workflow. The OMS must handle complexity: an order may contain products from three different sellers, requiring split fulfillment; a payment may use a combination of wallet balance, UPI, and a coupon; inventory availability may change between the time the item was added to cart and checkout. The OMS must reconcile all of this in real time.</p>
+<h4>3. Back-End Operations</h4>
+<p><strong>ERP (Enterprise Resource Planning)</strong> manages inventory levels, purchase orders to suppliers, accounts payable/receivable, and financial reporting. The inventory management system must maintain real-time stock counts across potentially hundreds of warehouses and thousands of SKUs, trigger reorders when stock falls below safety levels, and manage seasonal demand spikes. <strong>Fulfillment</strong> involves receiving inbound shipments from suppliers, putaway to warehouse locations, picking items for orders, packing, labelling, and handoff to the outbound logistics partner.</p>
+<h4>4. Support Services</h4>
+<p>The value chain is enabled by a set of horizontal services: payment processing (Razorpay, PayU, or internal payment operations), logistics (own fleet + 3PL partners), and customer support (pre-purchase queries, order tracking, returns, complaints). Customer support in e-commerce is a significant cost centre — at scale, Flipkart and Amazon each handle millions of support interactions monthly through a combination of AI-powered chatbots, IVR systems, and human agents. The quality of post-purchase support is a key determinant of repeat purchase and NPS (Net Promoter Score).</p>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Value chain: Customer Interface → Transaction Management → Back-End Operations → Support Services</li>
+<li>1-second page load delay → 7% cart abandonment increase — UI layer has direct revenue impact</li>
+<li>OMS: handles split orders, multi-seller fulfillment, mixed payment methods in real time</li>
+<li>ERP + inventory management: maintains real-time stock across hundreds of warehouses and thousands of SKUs</li>
+<li>Customer support: millions of interactions/month — significant cost; AI/chatbot reduces but doesn't eliminate human cost</li>
+</ul></div>`}
+]},
+// ─── CORE 7 ───────────────────────────────────────────────────
+{
+id:"U1C7",label:"Technology Architecture",
+topics:[
+{icon:"💻",cls:"ti-d",title:"Digital Storefronts, Platform Architecture & System Integrations",body:`
+<div class="prose">
+<h4>Digital Storefronts</h4>
+<p>A digital storefront is the consumer-facing presentation layer of an e-commerce business. This can be a website (built on Shopify, Magento, WooCommerce, or a custom stack), a mobile application (iOS/Android native, or cross-platform React Native/Flutter), or increasingly a conversational interface (WhatsApp catalogue, voice commerce). The storefront must handle: product cataloguing and search, media delivery (images, videos), dynamic pricing display, personalisation, checkout flow, and post-purchase communication. Performance — load speed, responsiveness across devices, uptime — is non-negotiable.</p>
+<h4>Monolithic vs Microservices Architecture</h4>
+<p>Early e-commerce platforms were built as <strong>monolithic systems</strong> — a single, large application where all components (catalogue, cart, checkout, payments, search) were tightly coupled. This simplified initial development but created problems at scale: a bug in the payment module could bring down the entire site; deploying any change required redeploying the entire application; different components could not be scaled independently.</p>
+<p>Modern e-commerce platforms adopt <strong>microservices architecture</strong> — decomposing the application into independently deployable services, each responsible for a specific function. Search is one service; cart is another; payments is another; recommendations is another. Each service can be scaled independently (search during sale events; payments always), updated without affecting others, and built by separate teams in potentially different programming languages. Amazon reportedly runs tens of thousands of microservices. The trade-off is increased operational complexity (more services to monitor, more inter-service communication to manage).</p>
+<h4>Headless Commerce</h4>
+<p>A more recent architectural evolution: <strong>headless commerce</strong> separates the frontend (the "head" — what users see) from the backend commerce engine (catalogue, pricing, cart, checkout logic). The backend exposes APIs that can serve content to any frontend: a website, a mobile app, a smartwatch interface, a physical kiosk, a voice assistant. This enables brands to deliver consistent commerce experiences across all touchpoints without rebuilding the backend for each.</p>
+<h4>System Integrations — The API Ecosystem</h4>
+<p>A modern e-commerce platform integrates dozens of external systems via APIs:</p>
+<ul>
+<li><strong>Payment gateways:</strong> Razorpay, PayU, Cashfree — for transaction processing</li>
+<li><strong>Logistics APIs:</strong> Delhivery, Shiprocket, FedEx — for shipment booking, tracking, and delivery confirmation</li>
+<li><strong>Marketing tools:</strong> Meta Ads API, Google Ads API, email service providers (Mailchimp, CleverTap)</li>
+<li><strong>CRM:</strong> Salesforce, Zoho CRM — for customer data management</li>
+<li><strong>ERP:</strong> SAP, Oracle — for inventory and financial data synchronisation</li>
+<li><strong>Analytics:</strong> Google Analytics, Mixpanel, Amplitude — for behavioural tracking</li>
+</ul>
+<h4>Data Infrastructure</h4>
+<p>E-commerce generates enormous volumes of data — product data (catalogues, images, descriptions), customer data (profiles, addresses, payment methods), transaction data (orders, payments, returns), and behavioural data (clicks, searches, browsing sessions). This data is stored in a combination of relational databases (MySQL, PostgreSQL — for structured transactional data), NoSQL databases (MongoDB, Cassandra — for flexible schema product catalogues), and data warehouses (Snowflake, BigQuery — for analytics and ML model training).</p>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Storefronts: website + app + conversational interfaces; performance (speed, uptime) is revenue-critical</li>
+<li>Monolithic → Microservices: independent scaling, deployment, and development of each function</li>
+<li>Headless commerce: decouple frontend from backend; serve any interface from one commerce engine</li>
+<li>API ecosystem: payment (Razorpay), logistics (Delhivery), marketing, CRM, ERP — all integrated</li>
+<li>Data types: product (catalogue), customer (profiles), transaction (orders), behavioural (clicks, sessions)</li>
+</ul></div>`}
+]},
+// ─── CORE 8 ───────────────────────────────────────────────────
+{
+id:"U1C8",label:"Digital Payments Integration",
+topics:[
+{icon:"💳",cls:"ti-a",title:"Payment Instruments, Workflow & Failure Handling",body:`
+<div class="prose">
+<h4>Payment Instruments in Indian E-Commerce</h4>
+</div>
+<table class="data-table"><thead><tr><th>Instrument</th><th>Mechanism</th><th>Share (2024 est.)</th><th>Key Feature</th></tr></thead><tbody>
+<tr><td>UPI</td><td>Bank-to-bank via VPA/QR</td><td>~50%</td><td>Instant, zero MDR, interoperable</td></tr>
+<tr><td>Cash on Delivery</td><td>Physical cash at delivery</td><td>~30–35%</td><td>No pre-payment risk; high return rate</td></tr>
+<tr><td>Credit/Debit Cards</td><td>Card network (Visa/Mastercard/RuPay)</td><td>~10–12%</td><td>EMI availability; chargeback protection</td></tr>
+<tr><td>Digital Wallets</td><td>Prepaid stored value</td><td>~3–5%</td><td>Fast checkout; limited to wallet balance</td></tr>
+<tr><td>BNPL</td><td>Short-term credit at checkout</td><td>~3–4%</td><td>Increases AOV; credit risk for lender</td></tr>
+<tr><td>Net Banking</td><td>Direct bank portal redirect</td><td>~2%</td><td>High value transactions; declining vs UPI</td></tr>
+</tbody></table>
+<div class="prose">
+<h4>Payment Workflow — From Checkout to Settlement</h4>
+<p>A payment transaction in e-commerce involves multiple parties and several steps that happen in milliseconds:</p>
+<ol>
+<li><strong>Initiation:</strong> Consumer selects payment method and confirms. Payment details are transmitted (encrypted) from the merchant's checkout page to the payment gateway.</li>
+<li><strong>Authorization:</strong> The gateway routes the transaction to the relevant network (Visa/Mastercard/NPCI for UPI). The network contacts the consumer's issuing bank. The bank checks: sufficient balance/credit, card not blocked, transaction not flagged as fraud. Response: Approved or Declined with a reason code.</li>
+<li><strong>Authentication (for card payments):</strong> 3D Secure (OTP to registered mobile) adds a second factor of authentication — mandated by RBI for all card-not-present transactions in India.</li>
+<li><strong>Clearing:</strong> At end of day (or in real time for UPI), transactions are submitted to the clearing network. The acquiring bank (merchant's bank) and issuing bank (consumer's bank) reconcile the net amounts owed.</li>
+<li><strong>Settlement:</strong> Funds are transferred from the issuing bank through the network to the acquiring bank, which credits the merchant's account. Cards: T+2 to T+3. UPI: real-time gross settlement (RTGS equivalent).</li>
+</ol>
+<h4>Transaction Failure Handling</h4>
+<p>Payment failures are a significant e-commerce problem — the industry average payment success rate in India is 85–92%, meaning 8–15% of initiated transactions fail. Each failure is a lost sale. Causes and handling:</p>
+<ul>
+<li><strong>Insufficient funds/credit:</strong> Show clear error, offer alternative payment methods</li>
+<li><strong>Network timeout:</strong> Gateway did not receive response from bank in time. System must determine if money was debited (and charge not confirmed) — requires reconciliation. Auto-refund within T+5 days per RBI mandate</li>
+<li><strong>Fraud decline:</strong> Bank's risk engine flagged the transaction. Consumer may need to call bank to override, or use different payment method</li>
+<li><strong>Chargebacks:</strong> Consumer disputes a completed transaction with their bank. Platform must respond with proof of delivery within specified timeline or refund the amount. Chargeback rates above 1% can result in merchant account suspension by card networks</li>
+</ul>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>UPI ~50% share in Indian e-commerce; CoD ~30–35% — unique India-specific payment mix</li>
+<li>Payment flow: Initiation → Authorization → Authentication (3DS OTP) → Clearing → Settlement</li>
+<li>Indian payment success rate: 85–92% — 8–15% failure = lost sales requiring active optimization</li>
+<li>RBI mandate: auto-refund for failed-but-debited transactions within T+5 days</li>
+<li>Chargeback rate > 1% → card network can suspend merchant payment processing</li>
+</ul></div>`}
+]},
+// ─── CORE 9 ───────────────────────────────────────────────────
+{
+id:"U1C9",label:"Customer Experience Management",
+topics:[
+{icon:"🎯",cls:"ti-c",title:"Customer Journey, Personalization & Trust Mechanisms",body:`
+<div class="prose">
+<h4>The E-Commerce Customer Journey</h4>
+<p>The customer journey in e-commerce is not a straight line from awareness to purchase — it is a complex, non-linear sequence of touchpoints across multiple devices and channels. The classic funnel model (Awareness → Interest → Desire → Action) underestimates this complexity. A more accurate representation:</p>
+<ul>
+<li><strong>Discovery:</strong> Customer becomes aware of a product/platform through a Google search, Instagram ad, friend's recommendation, or influencer content</li>
+<li><strong>Exploration:</strong> Browses product catalogue, uses search and filters, reads product descriptions and images — building or eroding purchase intent</li>
+<li><strong>Evaluation:</strong> Reads reviews, checks seller ratings, compares prices across platforms, looks for discount codes — the highest-friction stage where most potential purchases are abandoned</li>
+<li><strong>Checkout:</strong> Selects size/variant, adds to cart, applies coupon, selects delivery slot, chooses payment method, completes transaction — each step has drop-off risk</li>
+<li><strong>Post-Purchase:</strong> Receives order confirmation and tracking updates, receives the physical product, uses the product, potentially writes a review, potentially returns the product — this stage determines whether the customer becomes a repeat buyer</li>
+</ul>
+<h4>Personalisation Mechanisms</h4>
+<p><strong>Recommendation engines</strong> use purchase history, browsing behaviour, wishlist, cart additions, and demographic signals to surface products the specific consumer is most likely to purchase. Amazon's recommendation engine is credited with generating 35% of its revenue. Techniques include: collaborative filtering ("customers like you also bought"), content-based filtering ("similar to what you've viewed"), and hybrid ML models.</p>
+<p><strong>Dynamic pricing</strong> adjusts prices in real time based on demand, competitor pricing, inventory levels, and the individual consumer's purchase history and price sensitivity score. Airlines pioneered this; e-commerce platforms apply it across millions of SKUs. A consumer who has shown high price sensitivity (frequently uses coupons, compares prices) may be shown a different price or a targeted discount compared to a less price-sensitive customer for the same product.</p>
+<h4>Trust-Building Mechanisms</h4>
+<p>Trust is the foundational currency of e-commerce — consumers are transacting with sellers they have never met, for products they cannot physically inspect, through platforms that hold their payment information. Trust is built through:</p>
+<ul>
+<li><strong>Reviews and ratings:</strong> Peer validation is the most trusted form of product assurance. Amazon and Flipkart invest heavily in verified purchase reviews and in detecting fake reviews (review farms, incentivised reviews) because the integrity of the review system is the integrity of the platform's trust layer</li>
+<li><strong>Seller verification and badges:</strong> "Fulfilled by Amazon" (FBA), "Flipkart Assured" — platform-verified quality signals that the seller meets specific quality, authenticity, and return standards</li>
+<li><strong>Easy returns and guarantees:</strong> A clear, easy return policy reduces purchase anxiety. Amazon's no-questions-asked return policy is credited with significantly increasing conversion — consumers are more willing to try products knowing they can return them</li>
+<li><strong>Secure payment signals:</strong> SSL padlock, "100% secure payment" messaging, recognisable payment logos — visual trust signals that reduce payment hesitation</li>
+</ul>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Customer journey: Discovery → Exploration → Evaluation → Checkout → Post-Purchase (non-linear, multi-device)</li>
+<li>Amazon's recommendation engine: ~35% of revenue attributable to personalised recommendations</li>
+<li>Dynamic pricing: adjusts in real time per demand, competition, inventory, and individual price sensitivity</li>
+<li>Trust hierarchy: peer reviews > platform badges > brand claims — authentic reviews are platform's most valuable trust asset</li>
+<li>Easy returns policy increases conversion — lower purchase anxiety outweighs higher return cost at scale</li>
+</ul></div>`}
+]},
+// ─── CORE 10 ───────────────────────────────────────────────────
+{
+id:"U1C10",label:"Pricing & Revenue Logic",
+topics:[
+{icon:"💰",cls:"ti-c",title:"Pricing Approaches, Revenue Streams & Unit Economics",body:`
+<div class="prose">
+<h4>Pricing Approaches</h4>
+<ul>
+<li><strong>Dynamic Pricing:</strong> Prices change in real time based on demand signals, competitor prices (scraped continuously), inventory levels, and time of day/week. Amazon changes prices millions of times per day across its catalogue. During Big Billion Days, Flipkart uses dynamic pricing to maximise revenue while staying competitive</li>
+<li><strong>Penetration Pricing:</strong> Deliberately below-cost pricing to acquire market share and build scale. Meesho priced fashion products at cost or loss for years to build its seller base and consumer habit. Zomato and Swiggy subsidised deliveries for years to build restaurant and consumer network density</li>
+<li><strong>Bundling:</strong> Combining multiple products or services at a combined price lower than individual components. Amazon Prime bundles shipping, video, music, and early sale access — each individually insufficient to justify the fee, but collectively compelling</li>
+<li><strong>Psychological Pricing:</strong> ₹999 instead of ₹1,000 (charm pricing — left-digit effect); "Was ₹2,499 — Now ₹1,199" (anchor pricing — the original price anchors the consumer's perception of value)</li>
+</ul>
+<h4>Revenue Streams in E-Commerce Platforms</h4>
+<table class="data-table"><thead><tr><th>Revenue Stream</th><th>Mechanism</th><th>Platform Example</th></tr></thead><tbody>
+<tr><td>Commission / Take Rate</td><td>% of GMV per transaction</td><td>Amazon (8–15%), Zomato (18–22%)</td></tr>
+<tr><td>Advertising</td><td>Sponsored listings, banner ads</td><td>Amazon Ads (fastest growing segment)</td></tr>
+<tr><td>Fulfillment Fees</td><td>Picking, packing, storage, delivery</td><td>Flipkart Fulfillment Services</td></tr>
+<tr><td>Subscription</td><td>Recurring membership fee</td><td>Amazon Prime ₹1,499/year</td></tr>
+<tr><td>Financial Services</td><td>Lending, insurance, co-branded cards</td><td>Flipkart Pay Later, Amazon Pay ICICI</td></tr>
+<tr><td>Data Services</td><td>Analytics, market research for brands</td><td>Amazon Brand Analytics</td></tr>
+</tbody></table>
+<h4>Unit Economics — The Foundation of E-Commerce Viability</h4>
+<p>Unit economics answers the question: <strong>does a single transaction (or single customer) create or destroy value?</strong> E-commerce businesses must achieve positive unit economics at scale to be viable — many historically prioritised growth over unit economics, leading to spectacular failures.</p>
+</div>
+<div class="fbox"><div class="fbox-label">Key Unit Economics Formulas</div>
+CAC (Customer Acquisition Cost) = Total Marketing & Sales Spend / Number of New Customers Acquired
+
+LTV (Lifetime Value) = Avg Order Value × Purchase Frequency per Year × Avg Customer Lifespan (years) × Gross Margin %
+
+Contribution Margin per Order = Revenue per Order − COGS − Fulfillment Cost − Payment Processing Fee − Returns Cost
+
+LTV:CAC Ratio > 3:1 = Healthy; < 1:1 = Destroying Value
+
+Payback Period = CAC / (Monthly Contribution Margin per Customer)
+</div>
+<div class="worked"><div class="worked-lbl">📌 Worked Example — Unit Economics</div>
+<p>An online fashion brand has the following metrics:</p>
+<p><strong>Revenue per order:</strong> ₹1,200 | <strong>COGS:</strong> ₹480 | <strong>Fulfillment cost:</strong> ₹120 | <strong>Payment fee (2%):</strong> ₹24 | <strong>Returns (25% rate, ₹100 reverse logistics):</strong> ₹25</p>
+<p><strong>Contribution Margin = 1,200 − 480 − 120 − 24 − 25 = ₹551 per order (45.9%)</strong></p>
+<p><strong>CAC</strong> (digital marketing ÷ new customers) = ₹800</p>
+<p><strong>LTV</strong> = ₹551 × 3.5 orders/year × 2.5 years = <strong>₹4,822</strong></p>
+<p><strong>LTV:CAC = 4,822 / 800 = 6.0x</strong> → Excellent (target is >3x)</p>
+<p><strong>Payback Period = 800 / (551/12) = 800/46 = ~17 months</strong></p>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Dynamic pricing: Amazon changes prices millions of times/day — demand + competition + inventory signals</li>
+<li>Penetration pricing: below-cost to build scale (Meesho, Zomato delivery subsidies) — only viable with external capital</li>
+<li>Revenue streams: commission + advertising + fulfillment + subscription + financial services + data</li>
+<li>Amazon Ads is now its fastest-growing and highest-margin revenue segment</li>
+<li>LTV:CAC > 3:1 = healthy; Contribution margin must be positive at transaction level before corporate overhead</li>
+<li>Payback period: how many months before CAC is recovered from customer profit contribution</li>
+</ul></div>`}
+]},
+// ─── CORE 11 ───────────────────────────────────────────────────
+{
+id:"U1C11",label:"Logistics & Fulfillment",
+topics:[
+{icon:"📦",cls:"ti-f",title:"Warehousing, Delivery Models & Reverse Logistics",body:`
+<div class="prose">
+<h4>Warehousing Strategies</h4>
+<ul>
+<li><strong>Centralised Warehousing:</strong> One or a few large fulfillment centres serving the entire country. Lower storage cost per unit (economies of scale), simpler inventory management, but longer delivery times to distant locations and higher last-mile delivery cost</li>
+<li><strong>Decentralised / Regional Fulfillment:</strong> Multiple warehouses positioned across regions — products pre-positioned closer to demand clusters. Amazon India operates 60+ fulfillment centres across the country. Enables 1–2 day delivery to a much larger pin code set, but requires sophisticated inventory allocation (which SKUs to stock in which warehouse)</li>
+<li><strong>Dark Stores:</strong> Small-format urban warehouses (800–2,000 sq ft) positioned within 2–3 km of dense residential areas. Exclusively for e-commerce fulfillment — no consumer walk-in. Essential infrastructure for quick commerce (Blinkit, Zepto, Swiggy Instamart). A dark store in Koramangala, Bangalore can fulfill a grocery order to 80% of its serviceable area within 10 minutes</li>
+</ul>
+<h4>Delivery Models</h4>
+<ul>
+<li><strong>Standard Delivery (2–5 days):</strong> Shipment travels through hub-and-spoke logistics network. Long-distance moved by surface/air; last-mile by local delivery partners. Economical but not differentiated</li>
+<li><strong>Express Delivery (same-day/next-day):</strong> Requires inventory pre-positioned in regional fulfillment centres near demand. Amazon Prime Now, Flipkart Quick. Commands premium pricing or drives Prime membership value</li>
+<li><strong>Hyperlocal/Quick Commerce (10–30 minutes):</strong> Dark store → bike rider → customer doorstep. Only economical for high-frequency, relatively small baskets (grocery, pharmacy). Blinkit (Zomato subsidiary), Zepto, Swiggy Instamart — burning significant capital to build dark store density</li>
+<li><strong>Click and Collect / BOPIS:</strong> Consumer orders online, collects from nearby store or hub. Eliminates last-mile cost; growing in India through Amazon's "Hub Delivery" and Flipkart's "Pickup Points"</li>
+</ul>
+<h4>Reverse Logistics — The Hidden Cost of E-Commerce</h4>
+<p>Returns are an unavoidable reality of e-commerce, particularly in fashion (try-before-you-buy behaviour, size uncertainty) and electronics (quality expectations vs reality). The reverse logistics process: consumer initiates return → pick-up agent collects from customer → item transported to returns processing centre → quality inspection → restock (if good condition) or liquidate/dispose (if damaged). Each return costs ₹80–150 in logistics plus ₹20–50 in processing. For platforms with 20–30% return rates on fashion, this is a substantial P&L burden. Solutions: improved sizing guides and virtual try-on (reduces size returns), stricter return policies for serial returners, liquidation partnerships for returned/refurbished goods.</p>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Dark stores: 800–2000 sq ft urban micro-warehouses; essential for 10-30 minute quick commerce</li>
+<li>Amazon India: 60+ fulfillment centres enabling 1-2 day delivery to large pin code set</li>
+<li>Quick commerce economics: only viable for high-frequency, small baskets (grocery, pharmacy) — not general merchandise</li>
+<li>Return rate: fashion 20–30%; electronics 5–10%; each return costs ₹100–200 fully loaded</li>
+<li>Reverse logistics: collect → transport → inspect → restock/liquidate — complex, expensive, unavoidable</li>
+</ul></div>`}
+]},
+// ─── CORE 12 ───────────────────────────────────────────────────
+{
+id:"U1C12",label:"Legal & Regulatory Overview",
+topics:[
+{icon:"⚖️",cls:"ti-e",title:"Platform Compliance, GST & India's E-Commerce Regulatory Framework",body:`
+<div class="prose">
+<h4>FDI Rules — The Structural Constraint on Foreign E-Commerce</h4>
+<p>India's FDI policy in e-commerce (Press Note 2 of 2018) prohibits foreign direct investment in <strong>inventory-led e-commerce</strong> — a foreign-funded platform cannot own inventory and sell it to consumers. It can only operate as a <strong>marketplace</strong>, connecting buyers with independent sellers. Furthermore: no more than 25% of a marketplace platform's total sales can come from a single vendor or its group companies (preventing shadow inventory-led operations through affiliated sellers). This rule forced Amazon and Flipkart to restructure their supplier relationships multiple times — a significant ongoing regulatory and business challenge.</p>
+<h4>Consumer Protection Act 2019 — E-Commerce Specific Rules</h4>
+<p>The Consumer Protection (E-Commerce) Rules, 2020 (under the Consumer Protection Act 2019) impose specific obligations on e-commerce entities:</p>
+<ul>
+<li><strong>Mandatory seller disclosure:</strong> Every product listing must display the seller's legal name, address, and contact details — consumers must know who they are actually buying from</li>
+<li><strong>Price history transparency:</strong> Platforms cannot show misleading "original prices" that were never actually charged — the basis for the "was ₹5,000 now ₹1,999" must be genuine</li>
+<li><strong>Fake review prohibition:</strong> Platforms cannot publish, suppress, or manipulate consumer reviews — paid fake reviews are explicitly prohibited</li>
+<li><strong>Grievance officer:</strong> Every e-commerce entity must appoint a consumer grievance officer with a 48-hour acknowledgment and 1-month resolution obligation</li>
+</ul>
+<h4>GST Framework for E-Commerce</h4>
+<p>E-commerce operators are required to collect <strong>Tax Collected at Source (TCS)</strong> at 1% of net taxable supplies made through their platforms (0.5% CGST + 0.5% SGST). This is deducted from seller payments and deposited with the government — making the platform a tax collection intermediary. All sellers on e-commerce platforms must be GST-registered (even those below the normal GST threshold) if they sell through a marketplace operator — a significant compliance burden for small sellers. E-commerce platforms must file a separate GSTR-8 return monthly reporting all supplies made through the platform.</p>
+<h4>IT Rules 2021 — Social Media & E-Commerce Intermediaries</h4>
+<p>The Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021 impose due diligence, grievance redressal, and content takedown obligations on significant social media intermediaries (>5M users) that overlap with e-commerce marketplaces hosting user-generated content (reviews, seller listings).</p>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>FDI rule: no inventory ownership for foreign-funded platforms; max 25% GMV from single vendor group</li>
+<li>Consumer Protection Rules 2020: mandatory seller identity disclosure, price history transparency, fake review ban</li>
+<li>TCS: e-commerce operators collect 1% TCS from sellers and remit to government — platform as tax intermediary</li>
+<li>All marketplace sellers must register for GST regardless of turnover — compliance barrier for small sellers</li>
+<li>GSTR-8: monthly return filed by e-commerce operators reporting all platform-mediated supplies</li>
+</ul></div>`}
+]},
+// ─── CORE 13 ───────────────────────────────────────────────────
+{
+id:"U1C13",label:"Data & Analytics",
+topics:[
+{icon:"📊",cls:"ti-d",title:"Consumer Data, Business Metrics & Decision Support",body:`
+<div class="prose">
+<h4>Types of Data in E-Commerce</h4>
+<ul>
+<li><strong>Behavioural Data:</strong> What users do on the platform — search queries, pages viewed, time spent per page, scroll depth, items added/removed from cart, session duration, return visit frequency. This is the richest data asset because it reveals intent, preference, and decision process — not just outcomes</li>
+<li><strong>Transactional Data:</strong> What users buy — order history, SKUs purchased, payment methods used, return history, review written. The foundation of purchase pattern analysis and demand forecasting</li>
+<li><strong>Profile Data:</strong> Who users are — demographics (age, gender, location), device type, communication preferences, account tenure. Used for segment-level analysis and targeting</li>
+<li><strong>External Data:</strong> Competitor pricing (web scraped), weather data (demand for umbrellas, ice cream), festival calendars (Diwali demand spike), economic indicators — enriches internal data for more accurate forecasting</li>
+</ul>
+<h4>Key Business Metrics</h4>
+<table class="data-table"><thead><tr><th>Metric</th><th>Definition</th><th>Typical Range (India)</th></tr></thead><tbody>
+<tr><td>Conversion Rate</td><td>% of visitors who make a purchase</td><td>1.5–3% (desktop); 0.8–1.5% (mobile)</td></tr>
+<tr><td>Average Order Value (AOV)</td><td>Revenue ÷ Number of Orders</td><td>₹800–1,500 (general); ₹3,000+ (electronics)</td></tr>
+<tr><td>Cart Abandonment Rate</td><td>% who add to cart but don't buy</td><td>65–80%</td></tr>
+<tr><td>Return Rate</td><td>% of orders returned</td><td>5–10% (electronics); 20–30% (fashion)</td></tr>
+<tr><td>NPS (Net Promoter Score)</td><td>Likelihood to recommend (−100 to 100)</td><td>30–50 for leading platforms</td></tr>
+<tr><td>GMV</td><td>Total value of merchandise sold</td><td>Flipkart FY24: ~$24B</td></tr>
+<tr><td>Take Rate</td><td>Platform revenue ÷ GMV</td><td>12–18% for mature marketplaces</td></tr>
+</tbody></table>
+<h4>Decision Support — Demand Forecasting & Inventory Planning</h4>
+<p>E-commerce platforms use ML models to forecast demand at the SKU-location level — predicting how many units of each product will sell in each region over the next 7/14/30 days. This drives pre-positioning of inventory (which SKUs to send to which fulfillment centre), purchase orders to suppliers (how much to buy for the next quarter), and pricing decisions (lower price to clear overstocked items; higher price when stock is low relative to predicted demand). Amazon's demand forecasting system considers: historical sales velocity, promotional calendar, weather patterns, competitor activity, and macro economic signals — all simultaneously, for millions of SKUs.</p>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>4 data types: behavioural (richest — reveals intent), transactional, profile, external</li>
+<li>Conversion rate: 1.5–3% desktop, 0.8–1.5% mobile — most sessions don't convert</li>
+<li>Cart abandonment: 65–80% — majority of shopping sessions end without purchase</li>
+<li>Take rate: platform revenue / GMV — 12–18% for mature Indian marketplaces</li>
+<li>Demand forecasting: SKU-level, location-level ML predictions driving inventory pre-positioning and purchase orders</li>
+</ul></div>`}
+]},
+// ─── CORE 14 ───────────────────────────────────────────────────
+{
+id:"U1C14",label:"Trust, Risk & Fraud",
+topics:[
+{icon:"🛡️",cls:"ti-e",title:"Consumer Risks, Platform Risks & Risk Mitigation",body:`
+<div class="prose">
+<h4>Consumer-Facing Risks</h4>
+<ul>
+<li><strong>Counterfeit and fake products:</strong> Marketplace platforms with millions of sellers cannot inspect every product. Counterfeit electronics, fashion, cosmetics, and pharmaceuticals have been identified on Amazon, Flipkart, and Meesho. The reputational damage to the platform from a consumer receiving a fake product can be severe — particularly in health/safety-sensitive categories</li>
+<li><strong>Fake sellers:</strong> Accounts created with falsified business credentials to list and sell products, collect payment, and disappear before the consumer escalates. Common in high-value electronics and luxury goods</li>
+<li><strong>Price manipulation:</strong> Artificial inflation of "original price" to make discounts appear larger than they are — addressed by Consumer Protection Rules 2020 but enforcement is challenging</li>
+<li><strong>Data theft and account compromise:</strong> Phishing, SIM-swapping, and credential stuffing attacks can compromise consumer accounts — leading to unauthorised orders, payment method misuse, or address changes that divert deliveries</li>
+</ul>
+<h4>Platform-Level Risks</h4>
+<ul>
+<li><strong>Payment fraud:</strong> Card fraud (stolen card details used for purchases), refund fraud (consumer claims non-delivery to get a refund while keeping the product), account takeover fraud. Indian e-commerce platforms lose an estimated 0.1–0.3% of GMV to payment fraud</li>
+<li><strong>Seller fraud:</strong> Sellers gaming the platform's algorithm (review manipulation, search keyword stuffing, fake sales to boost ratings), selling expired or substandard goods</li>
+<li><strong>Data misuse:</strong> Internal or third-party misuse of consumer data for purposes beyond the stated and consented purpose</li>
+</ul>
+<h4>Risk Mitigation Mechanisms</h4>
+<ul>
+<li><strong>KYC (Know Your Customer):</strong> Seller onboarding requires GST number, bank account verification, business address proof, and PAN verification — making it significantly harder for fraudulent sellers to operate at scale</li>
+<li><strong>Escrow-based payments:</strong> Payment is held in escrow until the consumer confirms delivery and satisfaction — the seller is only paid after the transaction is confirmed. Reduces incentive for "collect and disappear" fraud</li>
+<li><strong>ML-based fraud monitoring:</strong> Real-time transaction monitoring flagging anomalous patterns — unusually high order value for a new account, multiple orders to the same address with different accounts, device fingerprinting to identify known fraud devices</li>
+<li><strong>Product authentication programmes:</strong> Amazon's "Transparency" programme embeds unique QR codes in products from enrolled brands — consumers can scan to verify authenticity before unboxing</li>
+</ul>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Consumer risks: counterfeits, fake sellers, price manipulation, account compromise</li>
+<li>Platform fraud loss: 0.1–0.3% of GMV — at Flipkart's $24B GMV, this is ₹200–700 Cr annually</li>
+<li>KYC for sellers: GST + bank account + PAN + address — multiple verifiable credentials needed</li>
+<li>Escrow payments: seller paid only after delivery confirmation — reduces advance-payment fraud</li>
+<li>Amazon Transparency: per-unit QR codes for brand authentication — consumer-scannable at unboxing</li>
+</ul></div>`}
+]},
+// ─── CORE 15 ───────────────────────────────────────────────────
+{
+id:"U1C15",label:"Real-World Case Studies",
+topics:[
+{icon:"📋",cls:"ti-f",title:"Indian Platforms — Flipkart, Amazon India, Meesho & Nykaa",body:`
+<div class="prose">
+<h4>Flipkart — Building India's First E-Commerce Giant</h4>
+<p>Founded in 2007 by IIT Delhi alumni Sachin Bansal and Binny Bansal, Flipkart started as an online bookstore and progressively expanded into electronics, fashion, and general merchandise. Key milestones: pioneered Cash-on-Delivery in India (solving the trust problem for first-time online buyers), launched Flipkart Assured quality guarantee, built a proprietary logistics arm (Ekart), acquired Myntra (fashion, 2014) and Jabong, and launched Big Billion Days (2014 onwards) as India's first major e-commerce sale event. Walmart acquired 77% of Flipkart for $16 billion in 2018 — the largest e-commerce acquisition in India's history, validating the market's scale. Flipkart's FY2024 GMV is estimated at ~$24 billion.</p>
+<h4>Amazon India — Market Entry & Regulatory Navigation</h4>
+<p>Amazon entered India in 2013, committing $5 billion in investment (subsequently increased to $26 billion). It navigated FDI regulations by operating as a pure marketplace, using affiliated entities (Cloudtail, Appario) as large sellers. Amazon invested heavily in logistics (100+ fulfillment centres), digital payments (Amazon Pay, co-branded credit card with ICICI Bank), and content (Prime Video, Prime Music) to drive Prime membership. Amazon India reached profitability at the operational level in FY2023 — after a decade of investment. Its advertising business is growing rapidly as sellers pay for sponsored listings.</p>
+<h4>Meesho — Democratising E-Commerce for Tier-2/3 India</h4>
+<p>Meesho (founded 2015) identified an underserved segment: price-sensitive consumers in Tier-2, Tier-3 cities, and rural India who had smartphones but were not buying from Amazon or Flipkart (too expensive, too complex, English-heavy). Meesho built a social commerce model — enabling individuals (initially housewives) to resell products through WhatsApp by sharing catalogues, earning a commission. Evolved into a full marketplace with 140M+ transacting users, offering products at ₹99–500 price points that the premium platforms don't compete in. GMV crossed $5 billion in FY2024 with a focus on unit economics — achieved EBITDA breakeven in 2023.</p>
+<h4>Nykaa — D2C + Marketplace in Beauty</h4>
+<p>Nykaa (founded 2012 by Falguni Nayar) built a beauty-focused e-commerce platform that combines marketplace (third-party brands) with owned private label brands (Nykaa Cosmetics). Listed on BSE/NSE in 2021 at a ₹1.2 lakh crore valuation — the first profitable Indian e-commerce unicorn to go public. Nykaa's success demonstrates the power of category specialisation: deep expertise in beauty (expert content, educational videos, beauty advisor chat) vs the generalist approach of Amazon/Flipkart. Physical stores (Nykaa Luxe, On Trend) complement the online business — a true omnichannel model.</p>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Flipkart: pioneered CoD; Walmart acquisition ($16B, 2018); FY24 GMV ~$24B</li>
+<li>Amazon India: $26B committed investment; FDI navigation through marketplace structure; profitable FY2023</li>
+<li>Meesho: social commerce model; ₹99–500 price point; 140M+ users; EBITDA breakeven 2023</li>
+<li>Nykaa: category specialist (beauty); D2C + marketplace + private label; first profitable e-com unicorn IPO</li>
+<li>Key lesson: different platform strategies work for different segments — no single model dominates all</li>
+</ul></div>`},
+{icon:"❌",cls:"ti-e",title:"Failures, Pivots & Global Case Studies",body:`
+<div class="prose">
+<h4>Snapdeal — The Rise and Decline</h4>
+<p>Snapdeal was once valued at $6.5 billion (2016) and was considered the third major player in Indian e-commerce alongside Flipkart and Amazon. Its collapse is a case study in strategic miscalculation. Snapdeal tried to compete on price and selection against better-funded competitors rather than finding a defensible niche. Quality control was poor — counterfeit products damaged trust. A proposed merger with Flipkart fell through in 2017. Snapdeal eventually pivoted to a value-focused "Snapdeal 2.0" strategy targeting budget buyers with genuine products — but had lost most of its market position. Lesson: competing on price against deeper-pocketed players without a differentiated value proposition is a losing strategy.</p>
+<h4>ShopClues — The B-Grade Market Pivot</h4>
+<p>ShopClues was an early Indian marketplace focused on unbranded, Tier-3 city merchandise. Eventually acquired by Singapore-based Qoo10 in 2019 for a fraction of its peak valuation after failing to build seller quality and consumer trust at scale. The pivot to "unbranded value merchandise" as a deliberate strategy was underexecuted — Meesho subsequently proved that this segment was genuinely large and valuable, but required a social commerce distribution model rather than a traditional web marketplace.</p>
+<h4>Global: Amazon — From Bookstore to Everything Store to Infrastructure</h4>
+<p>Amazon's evolution is the definitive e-commerce case study. Started as an online bookstore (1994), expanded category by category, launched the third-party marketplace (2000), and then made the strategic pivot that changed its trajectory entirely: Amazon Web Services (AWS, 2006) — cloud computing infrastructure that now generates ~70% of Amazon's operating profit. Amazon used AWS profits to subsidise e-commerce losses during its aggressive expansion phase. Prime (2005) bundled free shipping with media content, creating the most successful loyalty programme in retail history. The lesson: the most valuable business model may be infrastructure for others, not just direct commerce.</p>
+<h4>Alibaba — Platform Ecosystem in China</h4>
+<p>Alibaba built three distinct but interconnected platforms: <strong>Taobao</strong> (C2C marketplace — free for sellers, funded by advertising), <strong>Tmall</strong> (B2C marketplace for brands — commission-based), and <strong>1688/Alibaba.com</strong> (B2B wholesale). This ecosystem approach — where each platform serves a different part of the commerce value chain — created powerful cross-platform network effects and data advantages. Alipay (payment), Cainiao (logistics), and Alibaba Cloud (infrastructure) make Alibaba a full commerce ecosystem, not just a marketplace.</p>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Snapdeal: $6.5B peak valuation → near-zero — competing on price vs deeper-funded rivals without differentiation</li>
+<li>ShopClues: value segment is real but requires right distribution model (Meesho proved this subsequently)</li>
+<li>Amazon: AWS profits (~70% operating profit) subsidised e-commerce expansion — infrastructure > direct commerce</li>
+<li>Alibaba: ecosystem of interconnected platforms (Taobao C2C + Tmall B2C + 1688 B2B) with shared infrastructure</li>
+<li>D2C lesson (Nykaa, Boat): category specialisation + community building > generalist platform competition</li>
+</ul></div>`}
+]},
+// ─── CORE 16 ───────────────────────────────────────────────────
+{
+id:"U1C16",label:"Contemporary Industry Trends",
+topics:[
+{icon:"🚀",cls:"ti-a",title:"Omnichannel, Quick Commerce, Social Commerce & AI-Led Commerce",body:`
+<div class="prose">
+<h4>Omnichannel Commerce — Online-Offline Integration</h4>
+<p>Omnichannel commerce is the strategy of providing a seamless consumer experience across all channels — online website, mobile app, physical store, and any other touchpoint — where inventory, customer data, and transaction history are unified. A consumer browses a product on the app, tries it in-store, and completes purchase online using a coupon from an email — all recognised as part of a single customer relationship. The challenge: most retailers have operated online and offline as separate P&L and technology silos. Integrating them requires shared inventory systems, unified customer identity, and redesigned staff incentive structures. Leading examples: Titan (Tanishq integrates online browsing with store appointments and customer goldsmith records), Nykaa (online + physical stores with shared loyalty), Lenskart (AR try-on online + in-store experience).</p>
+<h4>Quick Commerce (Q-Commerce) — The 10-30 Minute Model</h4>
+<p>Quick commerce is the delivery of everyday essentials within 10–30 minutes from urban dark stores. The model was pioneered globally by Gorillas and Getir and in India by Blinkit (Zomato subsidiary), Zepto, and Swiggy Instamart. The economics: each dark store covers a 2–3 km radius, carries 3,000–8,000 SKUs (primarily grocery, dairy, bakery, personal care, pharmacy), and aims for 400–600 orders/day to cover fixed costs (rent ₹80,000–1,50,000/month, staff, inventory). At ₹400–500 average order value and 20–25% gross margin, dark stores require significant order density to be profitable. Blinkit turned EBITDA-profitable at the unit level in late 2023 — a significant milestone that validated the model.</p>
+<h4>Social Commerce — Influencer-Led Selling</h4>
+<p>Social commerce integrates product discovery and purchase within social media platforms — eliminating the step between seeing a product and buying it. Two distinct models: (1) <strong>Platform-native commerce</strong> — Instagram Shopping, YouTube Shopping, WhatsApp Business Catalogue allow consumers to complete purchases without leaving the app; (2) <strong>Influencer-led selling</strong> — creators with engaged followings promote and sell products, earning commissions. In India, Moj, ShareChat, and Josh (short video) are building social commerce features. Meesho's original model was a form of social commerce — WhatsApp catalogue sharing. The appeal: peer recommendation (the most trusted form of product discovery) + seamless purchase = high conversion.</p>
+<h4>AI-Led Commerce</h4>
+<p>Artificial intelligence is transforming every layer of e-commerce:</p>
+<ul>
+<li><strong>Search & Discovery:</strong> Natural language search (understanding "blue summer dress under 2000 for beach party" as a semantic query rather than keyword match), visual search (upload image → find similar products), AI-generated personalised homepages</li>
+<li><strong>Pricing:</strong> ML models adjusting prices across millions of SKUs in real time, accounting for competitor prices, demand signals, inventory levels, and individual price sensitivity</li>
+<li><strong>Customer Service:</strong> LLM-powered chatbots handling order tracking, returns initiation, policy queries, and product recommendations — reducing human agent cost substantially</li>
+<li><strong>Demand Forecasting:</strong> Deep learning models predicting SKU-level demand 30–90 days ahead, driving inventory pre-positioning and supplier purchase orders</li>
+<li><strong>Fraud Detection:</strong> Real-time ML scoring every transaction for fraud probability, flagging anomalous patterns (new account + high-value order + unusual device + new delivery address) for human review</li>
+</ul>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Omnichannel: unified inventory + customer identity + experience across all channels — not just being present on multiple channels</li>
+<li>Quick commerce: dark store model; 2–3 km radius; 10–30 min delivery; Blinkit EBITDA-profitable at unit level (2023)</li>
+<li>Social commerce: peer recommendation + seamless purchase — highest-trust discovery mechanism</li>
+<li>AI in e-commerce: search (semantic/visual), pricing (real-time ML), service (LLM chatbots), forecasting, fraud detection</li>
+<li>Meesho's WhatsApp catalogue model was India's first large-scale social commerce experiment</li>
+</ul></div>`},
+{icon:"🌱",cls:"ti-b",title:"Sustainable Commerce & ONDC",body:`
+<div class="prose">
+<h4>Sustainable E-Commerce</h4>
+<p>E-commerce generates substantial environmental costs: packaging waste (the "brown box" problem — billions of cardboard boxes annually), carbon emissions from last-mile delivery vehicles, and the environmental cost of returns (items often cannot be economically restocked and end up in landfill). Leading platforms are responding: Amazon's "Frustration-Free Packaging" programme reduced packaging waste by 36% for enrolled products; Flipkart's "Green Fulfillment" initiative targets 100% electric delivery vehicles in key cities by 2030; Myntra has introduced resale (Myntra Minis) and vintage fashion sections to extend product life. Regulatory pressure is increasing — EU's Extended Producer Responsibility rules, India's Plastic Waste Management Rules, and mandatory ESG reporting for large companies will make sustainable logistics a compliance requirement, not just a PR initiative.</p>
+<h4>ONDC — Open Network for Digital Commerce</h4>
+<p>The <strong>Open Network for Digital Commerce (ONDC)</strong> is India's most significant structural intervention in e-commerce since the FDI policy reforms. Launched by the Department for Promotion of Industry and Internal Trade (DPIIT) in 2022, ONDC is a set of open protocols (like UPI is to payments) that decouples the buyer-side app from the seller-side app. Any buyer app (Paytm, PhonePe, Namma Yatri) can discover and order from any seller app (local store on Mystore, restaurant on Dotpe) — without Amazon or Flipkart sitting in the middle taking a 20–30% commission.</p>
+<ul>
+<li><strong>Problem ONDC solves:</strong> Platform concentration — Amazon and Flipkart dominate discovery, forcing sellers to pay high commissions and follow platform rules. Small sellers, local businesses, and kirana stores are locked into platform dependency</li>
+<li><strong>How it works:</strong> Standardised APIs for product cataloguing, order management, logistics, and payments. A seller listed on any ONDC-compliant seller-side app is discoverable by any buyer on any ONDC buyer-side app</li>
+<li><strong>Scale (2024):</strong> 6+ million sellers onboarded, operating in food, grocery, fashion, electronics, and mobility. Monthly transactions crossing 8 million</li>
+<li><strong>Significance:</strong> If ONDC achieves scale, it could fundamentally reduce marketplace platform power — shifting negotiating leverage back to sellers and enabling local commerce to participate in digital trade without platform intermediation</li>
+</ul>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>E-commerce environmental costs: packaging waste, delivery emissions, return-driven landfill</li>
+<li>Amazon Frustration-Free Packaging: 36% packaging waste reduction for enrolled products</li>
+<li>ONDC: open protocols decoupling buyer app from seller app — like UPI for commerce</li>
+<li>ONDC: 6M+ sellers (2024); buyer apps (PhonePe, Paytm) + seller apps (local stores) interoperable</li>
+<li>ONDC significance: if scaled, reduces marketplace commission dependency for India's 60M+ MSMEs</li>
+</ul></div>`}
+]},
+// ─── CORE 17 ───────────────────────────────────────────────────
+{
+id:"U1C17",label:"Emerging Business Challenges",
+topics:[
+{icon:"⚡",cls:"ti-f",title:"Margin Pressure, Platform Dependency & Regulatory Tightening",body:`
+<div class="prose">
+<h4>Margin Pressure — The Profitability Problem</h4>
+<p>Indian e-commerce has been characterised by a decade of loss-funded growth — platforms subsidising consumer prices, delivery costs, and seller acquisition to build scale, funded by venture capital and public market investors. The era of cheap capital (low interest rates, high-multiple valuation environments) that made this possible has ended. Platforms now face pressure to demonstrate sustainable unit economics. The margin pressure has multiple causes:</p>
+<ul>
+<li><strong>Discount wars:</strong> Each platform discounts to prevent consumers from switching to competitors — but discounting reduces gross margins. The fashion category, for instance, regularly sees effective prices 40–60% below MRP, with the discount partially funded by the platform's marketing budget</li>
+<li><strong>Rising logistics costs:</strong> Fuel costs, labour costs, and the structural expense of last-mile delivery in India (low density in many areas, traffic, address ambiguity) mean delivery cost per order has not declined as fast as GMV has grown</li>
+<li><strong>Advertising inflation:</strong> As all platforms compete for the same consumer attention on Google, Meta, and Instagram, Customer Acquisition Cost (CAC) has risen sharply. Brands report CAC increasing 30–50% between 2019 and 2023 on performance marketing channels</li>
+</ul>
+<h4>Platform Dependency — The Seller's Dilemma</h4>
+<p>Sellers on e-commerce platforms face a fundamental dependency problem: they need the platform's traffic to reach consumers, but the platform controls the terms of access (commissions, listing rules, algorithm). A seller generating 80% of its revenue through Amazon Marketplace has very limited negotiating power against Amazon's commission increases. Platform concentration risk becomes existential if a seller's account is suspended (algorithm error, complaint by a competitor using false DMCA claims) — losing access overnight to their primary sales channel. This dynamic is why ONDC has attracted such attention from the seller community and small business organisations.</p>
+<h4>Regulatory Tightening</h4>
+<ul>
+<li><strong>Competition law:</strong> CCI (Competition Commission of India) has investigated Amazon and Flipkart for self-preferencing (giving preferential treatment to affiliated sellers), deep discounting that crowds out competition, and exclusive dealing arrangements with brands. Both face potential orders requiring structural changes to their marketplace operations</li>
+<li><strong>Data protection:</strong> India's Digital Personal Data Protection Act (DPDP Act) 2023, when fully implemented, will impose significant obligations on e-commerce platforms regarding consent for data collection, purpose limitation, data localisation, and breach reporting — requiring compliance infrastructure investment</li>
+<li><strong>FDI enforcement:</strong> The government has tightened scrutiny of Amazon and Flipkart's compliance with the 25% single-vendor rule and other FDI conditions — ongoing regulatory risk for the platforms' operating structures</li>
+</ul>
+</div>
+<div class="kp-box"><div class="kp-lbl">🔑 Key Points</div><ul>
+<li>Margin pressure: discount wars + rising logistics costs + CAC inflation (30–50% increase 2019–2023)</li>
+<li>Era of loss-funded growth ending — unit economics and profitability now investor priority</li>
+<li>Platform dependency: sellers with 80%+ revenue on one platform have near-zero negotiating power</li>
+<li>ONDC as strategic alternative to platform dependency for MSMEs — reducing concentrated channel risk</li>
+<li>CCI investigation: Amazon + Flipkart for self-preferencing and exclusive dealing — potential structural remedies</li>
+<li>DPDP Act 2023: consent, purpose limitation, breach reporting — significant e-commerce compliance obligation</li>
+</ul></div>`}
+]}
+] // end Unit 1 coreTopics
+}
+]; // end UNITS
+
+// ═══════════════════════════════════════════════
+// ENGINE
+// ═══════════════════════════════════════════════
+const LS_KEY='ecom_guide_done_v1';
+function loadCompleted(){try{const r=localStorage.getItem(LS_KEY);return r?new Set(JSON.parse(r)):new Set();}catch(e){return new Set();}}
+function saveCompleted(){try{localStorage.setItem(LS_KEY,JSON.stringify([...completed]));}catch(e){}}
+let activeUnitIdx=0,activeCoreTopic=null;
+const completed=loadCompleted();
+const TOTAL_CORE=UNITS.reduce((s,u)=>s+u.coreTopics.length,0);
+const unitNav=document.getElementById('unitnav');
+const sidebarList=document.getElementById('sidebar-list');
+const welcomeScreen=document.getElementById('welcome-screen');
+const topicPanel=document.getElementById('topic-panel');
+UNITS.forEach((unit,ui)=>{
+  const btn=document.createElement('button');
+  btn.className='unit-btn'+(ui===0?' active':'');
+  btn.textContent=unit.label;
+  btn.onclick=()=>selectUnit(ui);
+  unitNav.appendChild(btn);
+});
+function updateProgress(){
+  const pct=Math.round((completed.size/TOTAL_CORE)*100);
+  document.getElementById('pbar').style.width=pct+'%';
+  document.getElementById('pcnt').textContent=`${completed.size} / ${TOTAL_CORE} Core Topics Covered`;
+}
+function selectUnit(ui){
+  activeUnitIdx=ui;activeCoreTopic=null;
+  document.querySelectorAll('.unit-btn').forEach((b,i)=>b.classList.toggle('active',i===ui));
+  buildSidebar(UNITS[ui]);
+  const unit=UNITS[ui];
+  const utd=document.getElementById('unit-title-display');
+  utd.style.display='block';
+  utd.innerHTML=`<div class="unit-title-display" style="--unit-color:${unit.color}"><div class="utd-tag">${unit.label}</div><h2>${unit.title}</h2></div>`;
+  welcomeScreen.style.display='flex';
+  topicPanel.style.display='none';
+}
+function buildSidebar(unit){
+  sidebarList.innerHTML='';
+  unit.coreTopics.forEach((ct,ci)=>{
+    const isDone=completed.has(ct.id);
+    const btn=document.createElement('button');
+    btn.className='core-topic-btn'+(isDone?' ct-done':'');
+    btn.id='sb-'+ct.id;
+    btn.innerHTML=`<span class="ct-num">${String(ci+1).padStart(2,'0')}</span><span class="ct-label">${ct.label}</span>${isDone?'<span class="ct-check">✓</span>':''}`;
+    btn.onclick=()=>selectCoreTopic(ct,btn,unit.color);
+    sidebarList.appendChild(btn);
+  });
+}
+function selectCoreTopic(ct,btn,unitColor){
+  activeCoreTopic=ct.id;
+  document.querySelectorAll('.core-topic-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('unit-title-display').style.display='none';
+  welcomeScreen.style.display='none';
+  topicPanel.style.display='block';
+  topicPanel.innerHTML=buildCoreTopicPanel(ct,unitColor);
+  document.getElementById('content-area').scrollTop=0;
+}
+function buildCoreTopicPanel(ct,unitColor){
+  const isDone=completed.has(ct.id);
+  const topicsHTML=ct.topics.map((t,ti)=>`
+    <div class="topic-card" id="tc-${ct.id}-${ti}">
+      <div class="topic-head" onclick="toggleCard('${ct.id}',${ti})">
+        <div class="t-icon ${t.cls}">${t.icon}</div>
+        <div class="topic-title">${t.title}</div>
+        <div class="topic-arrow">▼</div>
+      </div>
+      <div class="topic-body">${t.body}</div>
+    </div>`).join('');
+  return `<div class="ct-panel-hdr"><div class="ct-tag" style="color:${unitColor}">${UNITS[activeUnitIdx].label} · Core Area</div><h2>${ct.label}</h2></div>
+    ${topicsHTML}
+    <div class="bottom-nav">
+      <button class="btn btn-secondary" onclick="navigateCoreTopic(-1)">← Prev</button>
+      <span class="bn-info">${ct.topics.length} topic${ct.topics.length>1?'s':''}</span>
+      <button class="btn btn-primary ${isDone?'btn-done':''}" onclick="markTopicDone()" id="mark-done-btn">${isDone?'✓ Done':'Mark Done ✓'}</button>
+    </div>`;
+}
+function toggleCard(ctId,ti){const card=document.getElementById(`tc-${ctId}-${ti}`);if(card)card.classList.toggle('open');}
+function navigateCoreTopic(dir){
+  const unit=UNITS[activeUnitIdx];
+  const currentIdx=unit.coreTopics.findIndex(ct=>ct.id===activeCoreTopic);
+  const nextIdx=currentIdx+dir;
+  if(nextIdx<0||nextIdx>=unit.coreTopics.length)return;
+  const nextCt=unit.coreTopics[nextIdx];
+  const btns=document.querySelectorAll('.core-topic-btn');
+  selectCoreTopic(nextCt,btns[nextIdx],unit.color);
+}
+function markTopicDone(){
+  if(!activeCoreTopic)return;
+  completed.add(activeCoreTopic);saveCompleted();updateProgress();
+  const sbBtn=document.getElementById('sb-'+activeCoreTopic);
+  if(sbBtn){sbBtn.classList.add('ct-done');if(!sbBtn.querySelector('.ct-check'))sbBtn.insertAdjacentHTML('beforeend','<span class="ct-check">✓</span>');}
+  const markBtn=document.getElementById('mark-done-btn');
+  if(markBtn){markBtn.textContent='✓ Done';markBtn.classList.add('btn-done');}
+  setTimeout(()=>navigateCoreTopic(1),350);
+}
+function resetProgress(){
+  if(!confirm('Reset all progress? This cannot be undone.'))return;
+  completed.clear();saveCompleted();updateProgress();
+  buildSidebar(UNITS[activeUnitIdx]);
+  if(activeCoreTopic){const unit=UNITS[activeUnitIdx];const ct=unit.coreTopics.find(c=>c.id===activeCoreTopic);if(ct)topicPanel.innerHTML=buildCoreTopicPanel(ct,unit.color);}
+}
+updateProgress();
+selectUnit(0);
+</script>
+</body>
+</html>
